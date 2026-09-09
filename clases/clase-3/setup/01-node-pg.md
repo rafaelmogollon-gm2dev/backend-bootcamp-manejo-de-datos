@@ -85,7 +85,7 @@ createdb postgres
 Asegurate de que `require('dotenv').config()` esté en la primera línea de tu archivo de entrada (`index.js` o `db.js`), antes de leer cualquier `process.env`.
 
 ### Conectando contra Supabase en vez de local
-Si usás la alternativa cloud, reemplazá las variables del `.env` por los datos de tu connection string de Supabase (host, puerto —ojo que Supabase puede usar 5432 o 6543 según el modo—, usuario, password, database). Ver [setup/00-supabase-alternativa-cloud.md](00-supabase-alternativa-cloud.md).
+Si usás la alternativa cloud, reemplazá las variables del `.env` por los datos de tu connection string de Supabase (host, puerto —ojo que Supabase puede usar 5432 o 6543 según el modo—, usuario, password, database). Ver [../../clase-1/setup/00-supabase-alternativa-cloud.md](../../clase-1/setup/00-supabase-alternativa-cloud.md).
 
 ## Cómo "desinstalar" / limpiar
 

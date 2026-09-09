@@ -1,14 +1,10 @@
-# Clase 2 — SQL y Relaciones
+# Guía docente — Clase 2
 
 **Duración total:** 4hs (bloques cortos, no exposición corrida)
 
-## Objetivo de la clase
-
-Que escriban SQL real (CRUD completo) sobre datos ya existentes desde el primer momento, y que entiendan relaciones (1 a N, N a N) y JOINs con ejemplos concretos, no abstractos.
-
 ## Antes de la clase
 
-- Tener cargada la mini-DB "Biblioteca" (si no la cargaron en Clase 1): `psql postgres -f ejercicios/biblioteca/seed.sql`
+- Tener cargada la mini-DB "Biblioteca" (si no la cargaron en Clase 1): `psql postgres -f ../clase-1/ejercicios/biblioteca/seed.sql`
 - Traer el diagrama ER de su propio dominio (hecho en Clase 1 en dbdiagram.io)
 
 ## Bloque 1 (~35 min) — Repaso + tipos de datos + sentencias básicas
@@ -29,9 +25,7 @@ Que escriban SQL real (CRUD completo) sobre datos ya existentes desde el primer 
 
 **Consigna:** "Resuelvan los ejercicios de JOIN en SQLBolt (lecciones de INNER JOIN y LEFT JOIN) y tomen nota de al menos un caso donde INNER y LEFT JOIN les hayan dado resultados distintos."
 
-**Material:**
-- [SQLBolt](https://sqlbolt.com) — lecciones de JOIN
-- [Mode SQL Tutorial](https://mode.com/sql-tutorial)
+**Material:** ver [recursos/referencias.md](recursos/referencias.md)
 
 ## Bloque 3 (~25 min) — Condiciones, orden, límites
 
@@ -57,8 +51,8 @@ Que escriban SQL real (CRUD completo) sobre datos ya existentes desde el primer 
 
 **Cierre:** cada alumno corre su INNER JOIN en vivo y cuenta qué relación modeló.
 
-## Qué llevarse de esta clase
+## Notas de facilitación
 
-- Ya saben escribir SQL real para las 4 operaciones básicas (CRUD).
-- Entienden la diferencia entre INNER y LEFT JOIN con un caso concreto, no solo la definición.
-- Tienen su propio dominio ya creado como tablas reales en Postgres — base para la Clase 3, donde vamos a conectar esto desde Node.
+- Este es el bloque de más carga de contenido nuevo (tipos de datos + CREATE TABLE + CRUD completo) — no acelerar el Bloque 1 aunque parezca "básico", es la base de todo lo que viene.
+- Si algún alumno no trae el diagrama de Clase 1, dale la opción de modelar en el momento con 2 tablas simples — no debería frenar el ejercicio del resto.
+- La presentación (`presentacion.pptx`) sigue esta misma estructura de bloques.

@@ -1,16 +1,12 @@
-# Clase 1 — Introducción a Bases de Datos y Modelado
+# Guía docente — Clase 1
 
 **Duración total:** 4hs (bloques cortos, no exposición corrida)
 
-## Objetivo de la clase
-
-Que entiendan por qué necesitamos persistencia real (más allá de la memoria/JSON de la Semana 1), qué es una base de datos relacional, y que practiquen pensar el modelo de datos (entidades, atributos, relaciones) **antes** de escribir una sola línea de SQL.
-
 ## Antes de la clase (avisar por Slack/canal del bootcamp)
 
-- Instalar Postgres.app: [setup/01-postgres.md](../../setup/01-postgres.md)
-- Instalar TablePlus o pgAdmin: [setup/02-tableplus-pgadmin.md](../../setup/02-tableplus-pgadmin.md)
-- Si algo falla, alternativa cloud: [setup/00-supabase-alternativa-cloud.md](../../setup/00-supabase-alternativa-cloud.md)
+- Instalar Postgres.app: [setup/01-postgres.md](setup/01-postgres.md)
+- Instalar TablePlus o pgAdmin: [setup/02-tableplus-pgadmin.md](setup/02-tableplus-pgadmin.md)
+- Si algo falla, alternativa cloud: [setup/00-supabase-alternativa-cloud.md](setup/00-supabase-alternativa-cloud.md)
 - Al arrancar la clase: preguntar quién no pudo instalar y resolver 1:1 mientras el resto avanza con el material de indagación.
 
 ## Bloque 1 (~25 min) — Repaso + por qué persistencia real
@@ -25,13 +21,11 @@ Que entiendan por qué necesitamos persistencia real (más allá de la memoria/J
 
 **Consigna:** "Busquen la diferencia entre una base de datos SQL y una NoSQL. ¿Cuándo elegirían una sobre la otra? Piensen en el proyecto de React que entregaron: ¿cómo modelarían sus datos en cada una?"
 
-**Material:**
-- Video comparativo SQL vs NoSQL (ver [recursos/banco-de-referencias.md](../../recursos/banco-de-referencias.md))
-- Documentación de MongoDB (conceptos básicos)
+**Material:** ver [recursos/referencias.md](recursos/referencias.md)
 
 ## Bloque 2 (~30 min) — Explorar una base de datos ya armada
 
-- Cargar la mini-DB "Biblioteca" (ver [ejercicios/biblioteca/README.md](../../ejercicios/biblioteca/README.md)):
+- Cargar la mini-DB "Biblioteca" (ver [ejercicios/biblioteca/README.md](ejercicios/biblioteca/README.md)):
   ```bash
   psql postgres -f ejercicios/biblioteca/seed.sql
   ```
@@ -41,7 +35,7 @@ Que entiendan por qué necesitamos persistencia real (más allá de la memoria/J
 
 ## Bloque 3 (~20 min) — Modelado ER: pensar antes de codear
 
-- Presentar dbdiagram.io ([setup/04-dbdiagram.md](../../setup/04-dbdiagram.md)).
+- Presentar dbdiagram.io ([setup/03-dbdiagram.md](setup/03-dbdiagram.md)).
 - Recrear en vivo el diagrama de "Biblioteca" a partir de lo que vieron en TablePlus (ida y vuelta entre "esto es lo que ya existe" y "así se diagrama").
 - Concepto de normalización: por qué separamos autores de libros en vez de repetir el nombre del autor en cada fila de libro (mencionar 1FN/2FN/3FN sin exhaustividad).
 
@@ -49,9 +43,7 @@ Que entiendan por qué necesitamos persistencia real (más allá de la memoria/J
 
 **Consigna:** "Investiguen qué es la normalización (1FN, 2FN, 3FN). Con sus propias palabras: ¿por qué separar los datos en varias tablas en vez de tener una sola tabla gigante?"
 
-**Material:**
-- Sección de normalización en el Database Design Course de freeCodeCamp
-- postgresqltutorial.com
+**Material:** ver [recursos/referencias.md](recursos/referencias.md)
 
 ## Bloque 4 (~15 min) — Buffer de dudas y troubleshooting de setup
 
@@ -69,8 +61,8 @@ Mínimo esperado:
 
 **Cierre:** 2-3 voluntarios comparten su diagrama y explican las decisiones (qué entidades eligieron, por qué esa relación).
 
-## Qué llevarse de esta clase
+## Notas de facilitación
 
-- Una base de datos relacional es sinónimo de persistencia real, no de memoria volátil.
-- Antes de escribir SQL, conviene pensar el modelo: entidades, atributos, relaciones.
-- El diagrama de su propio proyecto queda como base para las clases siguientes (Clase 2 en adelante van a crear tablas reales a partir de esto).
+- El objetivo pedagógico central: que salgan pensando en modelos antes que en código. No apurar el Bloque 3 aunque el grupo venga con ganas de "ya escribir algo".
+- Si la mayoría no llegó con Postgres.app instalado, usar el Bloque 4 completo (y robar 5-10 min del ejercicio) antes de avanzar — sin base de datos funcionando, el resto de la semana se cae.
+- La presentación (`presentacion.pptx`) sigue esta misma estructura de bloques, con la consigna de cada pregunta abierta y del ejercicio como slide propia para que quede a la vista del grupo mientras trabajan.

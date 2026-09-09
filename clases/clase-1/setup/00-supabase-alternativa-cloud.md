@@ -47,4 +47,4 @@ El plan free de Supabase pausa proyectos inactivos después de un tiempo sin uso
 
 ## Nota
 
-Guardá la connection string en un lugar seguro, nunca la subas a un repo público. Cuando lleguemos a la clase de conexión desde Node, vamos a guardarla en un archivo `.env` que **no** se commitea (ver [setup/03-node-pg.md](03-node-pg.md)).
+Guardá la connection string en un lugar seguro, nunca la subas a un repo público. Cuando lleguemos a la clase de conexión desde Node (Clase 3), vamos a guardarla en un archivo `.env` que **no** se commitea (ver [../../clase-3/setup/01-node-pg.md](../../clase-3/setup/01-node-pg.md)).

@@ -1,14 +1,10 @@
-# Clase 4 — Construcción & ORM: Sequelize
+# Guía docente — Clase 4
 
 **Duración total:** 4hs (bloques cortos, no exposición corrida)
 
-## Objetivo de la clase
-
-Que entiendan qué problema resuelve un ORM (comparado con lo que escribieron a mano en Clase 3) y migren su API a Sequelize, incluyendo relaciones entre modelos.
-
 ## Antes de la clase
 
-- Setup de Sequelize: [setup/05-sequelize.md](../../setup/05-sequelize.md)
+- Setup de Sequelize: [setup/01-sequelize.md](setup/01-sequelize.md)
 - Tener su API de Clase 3 (con `pg` puro, sobre su propio dominio o `starter-api`) funcionando como punto de partida — **seguimos sobre el mismo dominio que ya traen, no volvemos a "Biblioteca"**.
 
 ## Bloque 1 (~25 min) — Qué problema resuelve un ORM
@@ -30,13 +26,12 @@ Que entiendan qué problema resuelve un ORM (comparado con lo que escribieron a 
 
 **Consigna:** "Lean la sección 'Model Basics' y 'Associations' de la documentación oficial de Sequelize. ¿Cómo se define una relación `hasMany`/`belongsTo`? Anoten un ejemplo con sus propias entidades."
 
-**Material:**
-- [Documentación de Sequelize](https://sequelize.org) — "Model Basics" y "Associations"
+**Material:** ver [recursos/referencias.md](recursos/referencias.md)
 
 ## Bloque 3 (~30 min) — Relaciones en Sequelize
 
 - Definir juntos la relación de a uno con el ejemplo de `starter-api`: `Categoria.hasMany(Item, { as: 'items' })` y `Item.belongsTo(Categoria, { as: 'categoria' })`.
-- **Importante — mostrar esto en vivo, es una trampa común:** si no ponés `as` explícito, Sequelize intenta pluralizar/singularizar el nombre del modelo automáticamente para armar el alias, y con palabras en español eso puede salir mal (por ejemplo, `Categoria` → alias `Categorium`, que no existe en ningún lado). El síntoma es que el `include` no tira error, pero el dato relacionado aparece como `undefined`/`null` silenciosamente. La regla general: **siempre poné `as` a mano** en `hasMany`/`belongsTo`, y usá ese mismo string en el `include` (`include: 'items'` en vez de `include: Item`).
+- **Importante — mostrar esto en vivo, es una trampa común (verificada en la práctica):** si no ponés `as` explícito, Sequelize intenta pluralizar/singularizar el nombre del modelo automáticamente para armar el alias, y con palabras en español eso puede salir mal (por ejemplo, `Categoria` → alias `Categorium`, que no existe en ningún lado). El síntoma es que el `include` no tira error, pero el dato relacionado aparece como `undefined`/`null` silenciosamente. La regla general: **siempre poné `as` a mano** en `hasMany`/`belongsTo`, y usá ese mismo string en el `include` (`include: 'items'` en vez de `include: Item`).
 - Query con `include: 'categoria'` para traer items junto con su categoría (equivalente al JOIN de Clase 2, pero desde el ORM).
 - Comparar el código de esta query contra el SQL puro de Clase 2/3 — mismo resultado, menos código.
 - Cada alumno adapta esto a su propia relación (si su dominio tiene otra, ej. personajes↔casas), prestando atención al alias si su entidad también está en español.
@@ -57,8 +52,7 @@ Que entiendan qué problema resuelve un ORM (comparado con lo que escribieron a 
 
 **Cierre:** cada alumno muestra su ruta con `include` funcionando (Postman o curl).
 
-## Qué llevarse de esta clase
+## Notas de facilitación
 
-- Ven la diferencia directa entre escribir SQL a mano (Clase 3) y usar un ORM para lo mismo.
-- Sus modelos ya tienen relaciones definidas, no solo tablas sueltas.
-- Quedan preparados para la Clase 5, donde vamos a consolidar con queries más avanzadas y comparar con Prisma.
+- El bug del alias (`Categorium`) es el punto más importante de la clase para mostrar en vivo — provocalo a propósito (sacando el `as`) y mostrá el `undefined` silencioso, antes de dar la solución. Es mucho más memorable que explicarlo de forma abstracta.
+- La presentación (`presentacion.pptx`) sigue esta misma estructura de bloques, e incluye este mismo aviso del alias como slide propia.

@@ -1,17 +1,13 @@
-# Clase 3 — Interacciones con la Base de Datos desde Node
+# Guía docente — Clase 3
 
 **Duración total:** 4hs (bloques cortos, no exposición corrida)
 
-## Objetivo de la clase
-
-Que reemplacen el almacenamiento en memoria de una API Express real por queries reales a PostgreSQL usando el driver `pg`, entendiendo qué hace un ORM "por debajo" antes de usar uno (eso viene en Clase 4).
-
 ## Antes de la clase
 
-- Setup de conexión Node + Postgres: [setup/03-node-pg.md](../../setup/03-node-pg.md)
+- Setup de conexión Node + Postgres: [setup/01-node-pg.md](setup/01-node-pg.md)
 - Preguntar al grupo: "¿quiénes tienen su API de la Semana 1 corriendo ahora mismo?"
   - **Mayoría sí:** cada uno trabaja sobre su propia API durante el ejercicio.
-  - **Mayoría no / dudas:** todos trabajan sobre [starter-api/](../../starter-api/README.md), la propia queda como desafío opcional después de clase.
+  - **Mayoría no / dudas:** todos trabajan sobre [starter-api/](starter-api/README.md), la propia queda como desafío opcional después de clase.
 
 ## Bloque 1 (~20 min) — Repaso de la API existente + el problema de la memoria
 
@@ -29,9 +25,7 @@ Que reemplacen el almacenamiento en memoria de una API Express real por queries 
 
 **Consigna:** "Lean la sección de la documentación de node-postgres sobre queries parametrizadas (`$1`, `$2`, etc.) y la página de OWASP sobre SQL Injection. ¿Por qué no alcanza con concatenar strings para armar una query?"
 
-**Material:**
-- [Documentación de node-postgres](https://node-postgres.com)
-- [OWASP: SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
+**Material:** ver [recursos/referencias.md](recursos/referencias.md)
 
 ## Bloque 3 (~30 min) — CRUD completo con queries parametrizadas
 
@@ -53,8 +47,8 @@ Que reemplacen el almacenamiento en memoria de una API Express real por queries 
 
 **Cierre:** cada alumno reinicia su servidor en vivo y hace un GET para demostrar que los datos siguen ahí.
 
-## Qué llevarse de esta clase
+## Notas de facilitación
 
-- Su API ya no pierde datos al reiniciar — tiene persistencia real.
-- Entienden que un ORM (próxima clase) es una capa de conveniencia sobre esto mismo que acaban de escribir a mano.
-- Las queries parametrizadas no son opcionales — es la defensa básica contra SQL injection.
+- La demo del input "malicioso" en el Bloque 3 es el momento más memorable de la clase — no te la saltees aunque vayas justo de tiempo, es lo que hace tangible por qué importan las queries parametrizadas.
+- `starter-api` (en esta carpeta) ya tiene dos entidades relacionadas (`categorias`/`items`) para que el ejercicio no quede limitado a una sola tabla, incluso para quien no traiga su propia API.
+- La presentación (`presentacion.pptx`) sigue esta misma estructura de bloques.
