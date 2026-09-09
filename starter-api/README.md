@@ -14,6 +14,10 @@ npm run dev
 
 Corre en `http://localhost:3000`.
 
+**Versión verificada:** Express 4.22.x (fijada en `package.json` con `~4.22.2`, no `^`, para no saltar a una versión mayor sin haberla probado).
+
+**Nota:** `npm install` puede mostrar 2 vulnerabilidades moderadas (`qs`, usada internamente por Express para parsear query strings) — es un aviso conocido de Express 4.x, no algo introducido por este proyecto. El fix que sugiere npm (`npm audit fix --force`) migra a Express 5, que es un breaking change no verificado contra este material. Para el nivel de este bootcamp (sin exposición a internet, uso local en clase) no hace falta actuar sobre esto.
+
 ## Rutas
 
 - `GET /categorias` — lista todas las categorías

@@ -4,6 +4,8 @@
 
 Un cliente visual nos permite ver tablas, datos y relaciones sin escribir SQL a mano todo el tiempo. Elegí **una** de las dos opciones (no hace falta instalar ambas). TablePlus es más liviano y rápido; pgAdmin es 100% gratis sin límites y es la herramienta "oficial" del ecosistema Postgres.
 
+**Nota de verificación:** los pasos de conexión (host/puerto/usuario) fueron verificados contra Postgres 16 real. Los pasos específicos de instalación de cada app (el wizard, los diálogos de Gatekeeper) no se probaron paso a paso en una Mac — si algo en la interfaz no coincide exactamente con lo descrito (las apps cambian su UI con el tiempo), el objetivo final sigue siendo el mismo: terminar con una conexión a `localhost:5432`.
+
 ---
 
 ## Opción A — TablePlus (recomendado)

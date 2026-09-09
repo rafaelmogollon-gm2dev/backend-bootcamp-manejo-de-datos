@@ -6,6 +6,8 @@ dbdiagram.io es una herramienta web para diagramar entidades y relaciones (ER) e
 
 No requiere instalación: es 100% web.
 
+**Nota de verificación:** no se probó la interfaz web en vivo (requiere navegador). La sintaxis documentada abajo (`Table`, `ref:`) es estable y pública en la documentación oficial de dbdiagram.io — si la interfaz cambió de aspecto, la sintaxis para definir tablas y relaciones no debería haber cambiado.
+
 ## Paso a paso
 
 1. Entrá a [dbdiagram.io](https://dbdiagram.io).

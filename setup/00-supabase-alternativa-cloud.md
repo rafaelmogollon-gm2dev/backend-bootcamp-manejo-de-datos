@@ -6,6 +6,8 @@ Supabase ofrece una base de datos PostgreSQL real, gestionada en la nube, con pl
 
 No reemplaza el setup local: para las clases en vivo usamos Postgres.app, pero si algo no arranca el día de la clase, esta es la alternativa para no quedarte sin poder practicar.
 
+**Nota de verificación:** no se probó la creación real de un proyecto en la plataforma de Supabase (requiere cuenta propia) — los pasos siguen la interfaz pública documentada por Supabase al momento de escribir esto. Lo que sí está verificado es que el resto del material (SQL, `pg`, Sequelize, Prisma) funciona igual contra cualquier Postgres real, sea local o en Supabase, porque todos hablan el mismo protocolo — así que si Supabase cambia algún botón de su UI, el resto de las clases no se ve afectado.
+
 ## Paso a paso
 
 1. Entrá a [supabase.com](https://supabase.com) y hacé click en **"Start your project"**.

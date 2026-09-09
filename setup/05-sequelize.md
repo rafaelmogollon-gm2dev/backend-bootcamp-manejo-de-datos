@@ -4,6 +4,8 @@
 
 Sequelize es un ORM (Object-Relational Mapper) para Node.js: nos permite definir modelos como clases/objetos JavaScript en vez de escribir SQL a mano, y maneja migraciones, relaciones y validaciones básicas por nosotros.
 
+**Versión verificada:** Sequelize 6.37.x, sequelize-cli 6.6.x — es lo que instala `npm install sequelize` hoy sin pinear nada (Sequelize 7 todavía es alpha/next, npm no lo instala por defecto). A diferencia de Prisma, acá no hace falta fijar una versión exacta.
+
 ## Paso a paso
 
 1. Parado en la carpeta de tu proyecto, instalá Sequelize y el CLI:

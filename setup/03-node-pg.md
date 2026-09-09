@@ -4,12 +4,15 @@
 
 `pg` (node-postgres) es el driver que le permite a una app Node.js hablar directamente con PostgreSQL, sin pasar por un ORM. Lo usamos en la Clase 3 para entender qué hace un ORM "por debajo" antes de usar uno.
 
+**Versiones verificadas:** Node.js 22.x, `pg` 8.23.x, `dotenv` 17.x. Si tenés una versión de Node más vieja (18 LTS o 20 LTS también andan bien), no debería haber diferencia — `pg` y `dotenv` no tienen requisitos estrictos de versión de Node para este uso básico.
+
 ## Paso a paso
 
 1. Parado en la carpeta de tu proyecto (tu API de la Semana 1, o `starter-api/`), instalá las dependencias:
    ```bash
    npm install pg dotenv
    ```
+   Esto instala las últimas versiones estables (`pg` en la serie 8.x, `dotenv` en la serie 17.x al momento de escribir esto) — no hace falta pinear versión acá, es una librería madura sin cambios breaking frecuentes.
 2. Creá un archivo `.env` en la raíz del proyecto con los datos de conexión:
    ```
    DB_HOST=localhost
