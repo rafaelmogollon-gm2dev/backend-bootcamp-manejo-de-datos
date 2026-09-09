@@ -17,3 +17,13 @@ Material de las 5 clases de "Manejo de Datos" (Semana 2 del bootcamp de backend)
 3. [Interacciones con la Base de Datos desde Node](clases/clase-3-interacciones-node/README.md)
 4. [Construcción & ORM — Sequelize](clases/clase-4-orm-sequelize-1/README.md)
 5. [Construcción & ORM — Consolidación + Prisma](clases/clase-5-orm-sequelize-2-prisma/README.md)
+
+## Setup (instalar antes de cada clase)
+
+0. [Alternativa cloud: Supabase](setup/00-supabase-alternativa-cloud.md) — plan B si falla la instalación local
+1. [PostgreSQL con Postgres.app](setup/01-postgres.md)
+2. [Cliente visual: TablePlus o pgAdmin](setup/02-tableplus-pgadmin.md)
+3. [Conectar Node.js a PostgreSQL (driver pg)](setup/03-node-pg.md)
+4. [dbdiagram.io (modelado ER)](setup/04-dbdiagram.md)
+5. [Sequelize](setup/05-sequelize.md)
+6. [Prisma (mención comparativa)](setup/06-prisma-mencion.md)

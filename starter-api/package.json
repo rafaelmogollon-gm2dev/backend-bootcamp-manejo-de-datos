@@ -1,0 +1,12 @@
+{
+  "name": "starter-api",
+  "version": "1.0.0",
+  "description": "API Express minima con CRUD en memoria - base garantizada para las clases de Manejo de Datos",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
