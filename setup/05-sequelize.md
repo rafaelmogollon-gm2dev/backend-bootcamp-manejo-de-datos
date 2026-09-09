@@ -33,11 +33,12 @@ Sequelize es un ORM (Object-Relational Mapper) para Node.js: nos permite definir
    }
    ```
 
-4. Generá tu primer modelo (ejemplo con "Item"):
+4. Generá tu primer modelo (ejemplo con las entidades de `starter-api`, `Categoria` e `Item`):
    ```bash
-   npx sequelize-cli model:generate --name Item --attributes nombre:string,descripcion:string
+   npx sequelize-cli model:generate --name Categoria --attributes nombre:string
+   npx sequelize-cli model:generate --name Item --attributes nombre:string,descripcion:string,categoriaId:integer
    ```
-   Esto crea el modelo en `models/` y la migración correspondiente en `migrations/`.
+   Esto crea los modelos en `models/` y las migraciones correspondientes en `migrations/`. Si tu dominio es otro (el de tu propio proyecto), usá tus propias entidades en lugar de estas.
 
 5. Corré la migración para crear la tabla:
    ```bash

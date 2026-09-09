@@ -29,7 +29,7 @@ Que entiendan por qué necesitamos persistencia real (más allá de la memoria/J
 - Video comparativo SQL vs NoSQL (ver [recursos/banco-de-referencias.md](../../recursos/banco-de-referencias.md))
 - Documentación de MongoDB (conceptos básicos)
 
-## Bloque 2 (~20 min) — Explorar una base de datos ya armada
+## Bloque 2 (~30 min) — Explorar una base de datos ya armada
 
 - Cargar la mini-DB "Biblioteca" (ver [ejercicios/biblioteca/README.md](../../ejercicios/biblioteca/README.md)):
   ```bash
@@ -37,6 +37,7 @@ Que entiendan por qué necesitamos persistencia real (más allá de la memoria/J
   ```
 - Abrir TablePlus/pgAdmin y navegar juntos: tablas `autores`, `libros`, `prestamos`.
 - Señalar en vivo: ahí está la clave primaria (`id`), ahí está la clave foránea (`autor_id`), así se ve una relación 1 a N sin explicarla todavía en profundidad — solo que la vean con datos reales antes de la teoría formal.
+- Que cada alumno explore por su cuenta 5-10 minutos: cambiar valores, agregar una fila manualmente desde la interfaz visual (sin SQL), y contar qué encontraron.
 
 ## Bloque 3 (~20 min) — Modelado ER: pensar antes de codear
 
@@ -52,7 +53,11 @@ Que entiendan por qué necesitamos persistencia real (más allá de la memoria/J
 - Sección de normalización en el Database Design Course de freeCodeCamp
 - postgresqltutorial.com
 
-## Ejercicio práctico (~45 min)
+## Bloque 4 (~15 min) — Buffer de dudas y troubleshooting de setup
+
+- Espacio abierto para resolver instalaciones que no terminaron de andar (Postgres.app, TablePlus/pgAdmin) antes de que se meta de lleno en el ejercicio.
+
+## Ejercicio práctico (~1h40)
 
 **Consigna:** modelar en dbdiagram.io el dominio de su propio proyecto de React (Harry Potter, Star Wars, Pokémon, o el que hayan elegido) — **no importa si terminaron el frontend o no**, solo necesitan tener claro qué entidades manejan.
 
@@ -60,6 +65,7 @@ Mínimo esperado:
 - Al menos 2 tablas relacionadas entre sí (ej. personajes y casas/facciones, o naves y planetas).
 - Cada tabla con su clave primaria.
 - Al menos una clave foránea marcando la relación.
+- Si termina antes de tiempo: agregar una tercera tabla (ej. relación N a N, como personajes y hechizos que pueden compartirse entre varios personajes) y pensar cómo se modelaría esa relación con una tabla intermedia.
 
 **Cierre:** 2-3 voluntarios comparten su diagrama y explican las decisiones (qué entidades eligieron, por qué esa relación).
 

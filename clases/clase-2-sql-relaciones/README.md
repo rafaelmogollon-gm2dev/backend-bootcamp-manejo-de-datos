@@ -11,9 +11,10 @@ Que escriban SQL real (CRUD completo) sobre datos ya existentes desde el primer 
 - Tener cargada la mini-DB "Biblioteca" (si no la cargaron en Clase 1): `psql postgres -f ejercicios/biblioteca/seed.sql`
 - Traer el diagrama ER de su propio dominio (hecho en Clase 1 en dbdiagram.io)
 
-## Bloque 1 (~25 min) — Repaso + sentencias básicas
+## Bloque 1 (~35 min) — Repaso + tipos de datos + sentencias básicas
 
 - Repaso rápido del modelo de "Biblioteca" (autores → libros → préstamos).
+- Tipos de datos en Postgres: `VARCHAR` vs `TEXT`, `INTEGER` vs `SERIAL`, `BOOLEAN`, `DATE`/`TIMESTAMP` — necesario antes de que escriban su propio `CREATE TABLE` en el ejercicio de hoy.
 - CREATE TABLE: cómo se traduce un diagrama ER a SQL real (mostrar el export de dbdiagram.io y compararlo con `seed.sql`).
 - INSERT, SELECT, UPDATE, DELETE — sintaxis básica, con ejemplos en vivo sobre "Biblioteca" (que ya tienen cargada, así que arrancan viendo resultados reales al toque).
 
@@ -32,13 +33,17 @@ Que escriban SQL real (CRUD completo) sobre datos ya existentes desde el primer 
 - [SQLBolt](https://sqlbolt.com) — lecciones de JOIN
 - [Mode SQL Tutorial](https://mode.com/sql-tutorial)
 
-## Bloque 3 (~20 min) — Condiciones, orden, límites
+## Bloque 3 (~25 min) — Condiciones, orden, límites
 
 - WHERE con distintos operadores (`=`, `>`, `LIKE`, `IN`).
 - ORDER BY y LIMIT.
 - GROUP BY básico (ej. cantidad de libros por autor) — sin profundizar demasiado, solo que lo conozcan.
 
-## Ejercicio práctico (~1h)
+## Bloque 4 (~10 min) — Buffer de dudas
+
+- Espacio para resolver errores de sintaxis SQL antes de pasar al ejercicio largo.
+
+## Ejercicio práctico (~2h)
 
 **Consigna:** a partir del diagrama ER que armaron en Clase 1 (su propio dominio: personajes, hechizos, naves, etc.):
 
@@ -48,6 +53,7 @@ Que escriban SQL real (CRUD completo) sobre datos ya existentes desde el primer 
    - Un SELECT con WHERE y ORDER BY.
    - Un INNER JOIN entre dos de sus tablas relacionadas.
    - Un UPDATE y un DELETE sobre alguna fila de prueba.
+4. Si termina antes de tiempo: agregar un LEFT JOIN y comparar el resultado contra el INNER JOIN sobre sus propios datos.
 
 **Cierre:** cada alumno corre su INNER JOIN en vivo y cuenta qué relación modeló.
 

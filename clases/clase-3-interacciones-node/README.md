@@ -33,18 +33,23 @@ Que reemplacen el almacenamiento en memoria de una API Express real por queries 
 - [Documentación de node-postgres](https://node-postgres.com)
 - [OWASP: SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
 
-## Bloque 3 (~25 min) — CRUD completo con queries parametrizadas
+## Bloque 3 (~30 min) — CRUD completo con queries parametrizadas
 
 - Migrar juntos las rutas restantes (`POST`, `PUT`, `DELETE`) usando placeholders (`$1`, `$2`) en vez de concatenar strings.
 - Mostrar en vivo un ejemplo de query vulnerable (concatenada) vs. parametrizada, con un input "malicioso" simple para que vean la diferencia de comportamiento.
 
-## Ejercicio práctico (~1h)
+## Bloque 4 (~15 min) — Buffer de dudas y troubleshooting
+
+- Espacio abierto para resolver errores de conexión (`.env`, pool, puerto) antes de pasar al ejercicio largo.
+
+## Ejercicio práctico (~2h05)
 
 **Consigna:**
 
 1. Crear las tablas de su propio dominio en Postgres (si no lo hicieron en Clase 2, usar el `CREATE TABLE` que ya tienen).
 2. Migrar su API (o `starter-api`) para que las rutas CRUD trabajen contra esas tablas reales, usando `pg` y queries parametrizadas.
 3. Probar cada ruta con Postman o `curl`, confirmando que los datos persisten aunque reinicien el servidor.
+4. Si termina antes de tiempo: agregar manejo de errores básico (por ejemplo, devolver 400 si falta un campo obligatorio antes de mandar la query a Postgres).
 
 **Cierre:** cada alumno reinicia su servidor en vivo y hace un GET para demostrar que los datos siguen ahí.
 
