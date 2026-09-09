@@ -10,17 +10,27 @@ Prisma es otro ORM para Node.js, con un enfoque distinto a Sequelize: define el 
    ```bash
    mkdir prisma-demo && cd prisma-demo
    npm init -y
-   npm install prisma --save-dev
-   npm install @prisma/client
+   npm install prisma@6 --save-dev
+   npm install @prisma/client@6
    npx prisma init
    ```
-2. Esto crea `prisma/schema.prisma` y un `.env` con `DATABASE_URL`.
+   **Importante — pineá la versión `@6` como arriba, no instales `prisma` a secas.** Verificado: al momento de escribir esto, `npm install prisma --save-dev` sin versión resuelve a un release candidate (`8.0.0-rc.13`) que hace fallar la instalación completa con un error críptico de npm (`Cannot read properties of null (reading 'edgesOut')`), sin ninguna pista de que el problema es la versión. Si en el futuro Prisma 8 ya está estable, probá sin pinear; si falla así, este es el motivo.
+2. Esto crea `prisma/schema.prisma`, un `.env`, y (desde Prisma 6.something en adelante) un `prisma.config.ts` que centraliza la configuración — ya no alcanza con tener `DATABASE_URL` en `.env`, Prisma lee la conexión a través de ese archivo de config.
 3. Completá `.env`:
    ```
    DATABASE_URL="postgresql://tu_usuario_de_mac@localhost:5432/postgres"
    ```
-4. Definí un modelo simple en `prisma/schema.prisma`:
+4. Reemplazá el contenido de `prisma/schema.prisma` por (el que genera `init` por defecto puede traer un `generator client` distinto, orientado a otro flujo — usá este para que coincida con lo que sigue):
    ```prisma
+   generator client {
+     provider = "prisma-client-js"
+   }
+
+   datasource db {
+     provider = "postgresql"
+     url      = env("DATABASE_URL")
+   }
+
    model Item {
      id          Int     @id @default(autoincrement())
      nombre      String
@@ -43,11 +53,17 @@ Si `npx prisma studio` abre el navegador y ves la tabla `Item` (vacía o con dat
 
 ## Errores comunes en Mac
 
+### "Cannot read properties of null (reading 'edgesOut')" al instalar (verificado — pasa en la práctica)
+Es un bug del resolver de npm (`arborist`) al instalar la versión "latest" de `prisma`, que en ciertos momentos resuelve a un release candidate inestable. Solución: instalar una versión mayor fija y estable, por ejemplo `npm install prisma@6 --save-dev` (ver paso 1 arriba).
+
 ### "Can't reach database server"
-Revisá que `DATABASE_URL` en `.env` tenga el usuario correcto (`whoami`) y que Postgres.app esté corriendo.
+Revisá que `DATABASE_URL` en `.env` (o en `prisma.config.ts`, según la versión) tenga el usuario correcto (`whoami`) y que Postgres.app esté corriendo.
 
 ### "Environment variable not found: DATABASE_URL"
-Prisma necesita el archivo `.env` en la raíz del proyecto donde corrés los comandos `npx prisma`, no en una subcarpeta.
+Prisma necesita el archivo `.env` en la raíz del proyecto donde corrés los comandos `npx prisma`, no en una subcarpeta. Si tenés `prisma.config.ts`, confirmá que ese archivo también apunte a la variable correcta.
+
+### "Drift detected" / "We need to reset the schema" al correr `migrate dev`
+Pasa si la base de datos que usás ya tenía tablas de otro ejercicio (por ejemplo, si reutilizás la misma base `postgres` de las clases anteriores). Prisma detecta que el estado real no coincide con el historial de migraciones que él conoce. Para esta demo aislada, lo más simple es usar una base nueva y vacía (`createdb prisma_demo` y apuntar `DATABASE_URL` ahí) en vez de la `postgres` que ya tiene tablas de Sequelize/SQL puro.
 
 ### Puerto 5555 ocupado (Prisma Studio)
 ```bash
