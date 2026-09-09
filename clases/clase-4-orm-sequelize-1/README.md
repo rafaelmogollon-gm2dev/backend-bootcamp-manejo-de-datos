@@ -35,10 +35,11 @@ Que entiendan qué problema resuelve un ORM (comparado con lo que escribieron a 
 
 ## Bloque 3 (~30 min) — Relaciones en Sequelize
 
-- Definir juntos la relación de a uno con el ejemplo de `starter-api`: `Categoria.hasMany(Item)` y `Item.belongsTo(Categoria)`.
-- Query con `include` para traer items junto con su categoría (equivalente al JOIN de Clase 2, pero desde el ORM).
+- Definir juntos la relación de a uno con el ejemplo de `starter-api`: `Categoria.hasMany(Item, { as: 'items' })` y `Item.belongsTo(Categoria, { as: 'categoria' })`.
+- **Importante — mostrar esto en vivo, es una trampa común:** si no ponés `as` explícito, Sequelize intenta pluralizar/singularizar el nombre del modelo automáticamente para armar el alias, y con palabras en español eso puede salir mal (por ejemplo, `Categoria` → alias `Categorium`, que no existe en ningún lado). El síntoma es que el `include` no tira error, pero el dato relacionado aparece como `undefined`/`null` silenciosamente. La regla general: **siempre poné `as` a mano** en `hasMany`/`belongsTo`, y usá ese mismo string en el `include` (`include: 'items'` en vez de `include: Item`).
+- Query con `include: 'categoria'` para traer items junto con su categoría (equivalente al JOIN de Clase 2, pero desde el ORM).
 - Comparar el código de esta query contra el SQL puro de Clase 2/3 — mismo resultado, menos código.
-- Cada alumno adapta esto a su propia relación (si su dominio tiene otra, ej. personajes↔casas).
+- Cada alumno adapta esto a su propia relación (si su dominio tiene otra, ej. personajes↔casas), prestando atención al alias si su entidad también está en español.
 
 ## Bloque 4 (~15 min) — Buffer de dudas y troubleshooting
 

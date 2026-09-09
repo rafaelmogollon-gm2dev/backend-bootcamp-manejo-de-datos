@@ -77,6 +77,23 @@ Revisá el archivo de migración en `migrations/` — a veces hay que editarlo a
 ### Conflicto de nombres entre tabla y modelo
 Sequelize por convención pluraliza el nombre del modelo para la tabla (`Item` → `Items`). Si tu tabla ya existía con otro nombre (de la Clase 3), especificá `tableName` en el modelo para que apunte a la tabla correcta en vez de crear una nueva.
 
+### El `include` de una asociación devuelve `undefined`/`null` sin tirar error (verificado — pasa en la práctica)
+Esto ocurre cuando definís `hasMany`/`belongsTo` **sin** especificar `as`. Sequelize intenta pluralizar/singularizar automáticamente el nombre del modelo para armar el alias de la asociación, y con palabras en español ese algoritmo suele fallar silenciosamente — por ejemplo, `Item.belongsTo(Categoria)` sin alias genera internamente el alias `Categorium` (no `Categoria`), y como `Categorium` no es lo que esperás leer en el resultado, el dato relacionado queda `undefined` aunque la query no falle.
+
+**Solución:** siempre poné el alias a mano en la asociación, y usá ese mismo string en el `include`:
+```js
+// en categoria.js
+Categoria.hasMany(models.Item, { foreignKey: 'categoriaId', as: 'items' });
+
+// en item.js
+Item.belongsTo(models.Categoria, { foreignKey: 'categoriaId', as: 'categoria' });
+```
+```js
+// al consultar
+const items = await Item.findAll({ include: 'categoria' });
+const categorias = await Categoria.findAll({ include: 'items' });
+```
+
 ## Cómo desinstalar / empezar de cero
 
 ```bash
