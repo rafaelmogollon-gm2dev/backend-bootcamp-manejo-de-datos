@@ -73,11 +73,67 @@ Documentación oficial de MongoDB (conceptos básicos): https://www.mongodb.com/
 
 ## 4. Explorar una base de datos ya armada
 
-Antes de crear tu propia base de datos, vas a explorar una ya cargada ("Biblioteca": autores → libros → préstamos) con un cliente visual (TablePlus o pgAdmin), sin escribir SQL todavía:
+Antes de crear tu propia base de datos, vas a explorar una ya armada ("Biblioteca": autores → libros → préstamos) con un cliente visual (TablePlus o pgAdmin), sin escribir SQL todavía.
+
+Para tenerla en tu propia máquina, con Postgres corriendo (ver sección 7.1), abrí la Terminal, pegá el siguiente contenido en un archivo llamado `seed.sql` (podés crearlo con cualquier editor de texto), y corré:
+
+```bash
+psql postgres -f seed.sql
+```
+
+Contenido de `seed.sql`:
+
+```sql
+DROP TABLE IF EXISTS prestamos;
+DROP TABLE IF EXISTS libros;
+DROP TABLE IF EXISTS autores;
+
+CREATE TABLE autores (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  nacionalidad VARCHAR(50)
+);
+
+CREATE TABLE libros (
+  id SERIAL PRIMARY KEY,
+  titulo VARCHAR(150) NOT NULL,
+  autor_id INTEGER REFERENCES autores(id),
+  anio INTEGER,
+  disponible BOOLEAN DEFAULT true
+);
+
+CREATE TABLE prestamos (
+  id SERIAL PRIMARY KEY,
+  libro_id INTEGER REFERENCES libros(id),
+  nombre_lector VARCHAR(100) NOT NULL,
+  fecha_prestamo DATE DEFAULT CURRENT_DATE,
+  fecha_devolucion DATE
+);
+
+INSERT INTO autores (nombre, nacionalidad) VALUES
+  ('Gabriel García Márquez', 'Colombiana'),
+  ('Jorge Luis Borges', 'Argentina'),
+  ('Isabel Allende', 'Chilena'),
+  ('J.K. Rowling', 'Británica');
+
+INSERT INTO libros (titulo, autor_id, anio, disponible) VALUES
+  ('Cien años de soledad', 1, 1967, true),
+  ('El amor en los tiempos del cólera', 1, 1985, true),
+  ('Ficciones', 2, 1944, false),
+  ('El Aleph', 2, 1949, true),
+  ('La casa de los espíritus', 3, 1982, true),
+  ('Harry Potter y la piedra filosofal', 4, 1997, false);
+
+INSERT INTO prestamos (libro_id, nombre_lector, fecha_prestamo, fecha_devolucion) VALUES
+  (3, 'Mati', '2026-08-15', NULL),
+  (6, 'Joaquín', '2026-08-20', NULL);
+```
+
+Con las 3 tablas ya cargadas, abrí TablePlus/pgAdmin y navegá:
 
 - Vas a identificar la clave primaria (`id`) y la clave foránea (`autor_id`) directamente en los datos reales.
 - Vas a ver una relación 1 a N funcionando, antes de la teoría formal.
-- Vas a explorar por tu cuenta: cambiar valores, agregar una fila desde la interfaz visual, y compartir qué encontraste.
+- Explorá por tu cuenta: cambiá valores, agregá una fila desde la interfaz visual, y anotá qué encontraste.
 
 ---
 
@@ -104,14 +160,91 @@ Database Design Course (freeCodeCamp) — modelado, normalización y ER: https:/
 
 ---
 
-## 7. Herramientas de esta clase
+## 7. Herramientas de esta clase — instalación paso a paso
 
-- **PostgreSQL**: el motor de base de datos relacional que vamos a usar durante todo el bootcamp.
-- **TablePlus o pgAdmin**: un cliente visual para explorar tablas y datos sin escribir SQL.
-- **dbdiagram.io**: para diagramar entidades y relaciones antes de escribir código.
-- Alternativa cloud si la instalación local falla: Supabase.
+### 7.1 PostgreSQL (con Postgres.app)
 
-(La guía de instalación paso a paso de cada herramienta, con troubleshooting específico de Mac, está en el repo de la clase.)
+PostgreSQL es el motor de base de datos relacional que vamos a usar en todo el bootcamp. Postgres.app es la forma más simple de tenerlo corriendo en una Mac: es una aplicación normal, sin terminal ni gestores de paquetes.
+
+1. Entrá a https://postgresapp.com y descargá el instalador.
+2. Abrí el `.dmg` descargado y arrastrá el ícono de Postgres.app a la carpeta `Aplicaciones`.
+3. Abrí Postgres.app desde `Aplicaciones` (o Spotlight, `cmd+espacio` y escribí "Postgres").
+   - Si Mac bloquea la apertura ("no se puede abrir porque no se pudo verificar el desarrollador"): andá a `Preferencias del Sistema → Privacidad y Seguridad`, bajá hasta el mensaje sobre Postgres.app y hacé click en "Abrir de todas formas".
+4. En la ventana que aparece vas a ver una lista de versiones de PostgreSQL para elegir (14, 15, 16, 17, etc.) — **elegí la 16** y hacé click en "Initialize". Esto crea un servidor Postgres nuevo con esa versión y lo deja corriendo (vas a ver un elefante 🐘 en la barra de menú, arriba a la derecha).
+   - Si Postgres.app no te ofrece elegir versión y directamente inicializa una, no hay problema: cualquier versión 15+ funciona igual.
+5. Sumá las herramientas de línea de comandos (`psql`, `createdb`, etc.) a tu PATH:
+   - Abrí la Terminal y ejecutá:
+     ```bash
+     sudo mkdir -p /etc/paths.d && echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp
+     ```
+   - Cerrá la Terminal y abrila de nuevo (esto recarga el PATH).
+
+**Verificar que funcionó:** en una Terminal nueva, ejecutá `psql --version` (debería mostrar `psql (PostgreSQL) 16.x`), y después `psql postgres`. Si ves un prompt como `postgres=#`, estás adentro (para salir, escribí `\q` y Enter).
+
+**Datos de conexión por defecto:** host `localhost`, puerto `5432`, usuario tu usuario de Mac (`whoami` en la Terminal si no lo recordás), contraseña vacía, base de datos `postgres`.
+
+**Errores comunes:**
+- *"psql: command not found"*: el PATH no se actualizó. Cerrá todas las Terminales y abrí una nueva.
+- *Puerto 5432 ocupado*: puede haber otro Postgres corriendo. Con `lsof -i :5432` ves qué proceso es; si no es Postgres.app, matalo con `kill <PID>`.
+- *"connection refused"*: el servidor no está corriendo. Abrí Postgres.app y verificá que el elefante de la barra de menú esté activo.
+- *"role no existe"*: volvé a hacer click en "Initialize" desde la app, o creá el rol manualmente con `createuser -s $(whoami)`.
+
+### 7.2 Cliente visual: TablePlus o pgAdmin
+
+Un cliente visual permite ver tablas, datos y relaciones sin escribir SQL a mano todo el tiempo. Elegí **una** de las dos opciones.
+
+**Opción A — TablePlus (recomendado, más liviano):**
+1. Entrá a https://tableplus.com y descargá la versión para Mac. Abrí el `.dmg` y arrastrá TablePlus a `Aplicaciones`.
+2. Abrilo, y al abrir por primera vez, click en "Create a new connection" → elegí **PostgreSQL**.
+3. Completá: Host `localhost`, Port `5432`, User tu usuario de Mac, Password vacío, Database `postgres`.
+4. Click en "Test" (debería aparecer un tilde verde) y luego "Connect".
+   - Si la app no abre por Gatekeeper: `xattr -cr /Applications/TablePlus.app` en la Terminal.
+
+**Opción B — pgAdmin 4 (100% gratis, sin límites):**
+1. Entrá a https://www.pgadmin.org/download/pgadmin-4-macos/ y descargá el instalador. Arrastralo a `Aplicaciones`.
+2. Abrilo — la primera vez pide configurar una contraseña maestra (solo para la app, no es la de Postgres).
+3. Click derecho en "Servers" → "Register" → "Server...". En General, poné un nombre; en Connection: host `localhost`, port `5432`, maintenance database `postgres`, username tu usuario de Mac, password vacío.
+4. Guardar.
+
+**Verificar que funcionó:** deberías ver la base de datos `postgres` con sus esquemas en el árbol de la izquierda.
+
+### 7.3 dbdiagram.io (modelado ER)
+
+Herramienta 100% web para diagramar entidades y relaciones con una sintaxis simple tipo código, en vez de arrastrar cajas manualmente.
+
+1. Entrá a https://dbdiagram.io y click en "Go to App" (podés usarlo sin cuenta para probar; para guardar diagramas necesitás una cuenta gratuita con GitHub o Google).
+2. Click en "Create new Diagram".
+3. A la izquierda escribís la definición de tus tablas, por ejemplo:
+   ```
+   Table autores {
+     id int [pk, increment]
+     nombre varchar
+   }
+
+   Table libros {
+     id int [pk, increment]
+     titulo varchar
+     autor_id int [ref: > autores.id]
+   }
+   ```
+4. A la derecha se dibuja automáticamente el diagrama con la relación.
+
+Una vez armado, podés ir a Export → PostgreSQL para generar el `CREATE TABLE` correspondiente (lo vamos a usar en la próxima clase).
+
+Alternativa manual si preferís arrastrar cajas en vez de escribir sintaxis (sin exportación a SQL): https://draw.io
+
+### 7.4 Alternativa cloud si la instalación local falla: Supabase
+
+Si Postgres.app da problemas (permisos, puertos ocupados), Supabase ofrece un PostgreSQL real gestionado en la nube, gratis, sin instalar nada.
+
+1. Entrá a https://supabase.com → "Start your project" → creá una cuenta (podés usar GitHub).
+2. Click en "New project". Completá: nombre del proyecto, una contraseña fuerte para la base (guardala), región más cercana, plan Free.
+3. Click en "Create new project" (tarda 1-2 minutos).
+4. Andá a Project Settings → Database y copiá la Connection string ("URI").
+
+**Verificar que funcionó:** `psql "postgresql://postgres:TU-PASSWORD@db.xxxxxxxxxxxx.supabase.co:5432/postgres"` desde la Terminal, o pegá esos datos en TablePlus/pgAdmin como conexión nueva.
+
+**Nota:** Supabase pausa proyectos free inactivos después de un tiempo — si dice que el proyecto se "pausó", entrá al dashboard y click en "Restore project".
 
 ---
 
@@ -147,7 +280,7 @@ Guía de Ejercicios 1: Modelado de tu propio dominio
 - No importa si terminaste el frontend o no — solo necesitás tener claro qué entidades maneja tu dominio.
 
 ### 2. Explorar el ejemplo guiado (opcional, antes de arrancar)
-- Cargá la mini base de datos "Biblioteca" (autores → libros → préstamos) y explorala con TablePlus/pgAdmin.
+- Cargá la mini base de datos "Biblioteca" (autores → libros → préstamos) — el SQL para crearla está en el MATERIAL de esta clase, sección 4 — y explorala con TablePlus/pgAdmin.
 - Identificá dónde está la clave primaria y dónde la clave foránea antes de diseñar la tuya.
 
 ### 3. Modelar en dbdiagram.io
