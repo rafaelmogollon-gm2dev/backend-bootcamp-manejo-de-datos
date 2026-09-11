@@ -35,9 +35,10 @@
 
 ## Bloque 3 (~20 min) — Modelado ER: pensar antes de codear
 
-- Presentar dbdiagram.io ([setup/03-dbdiagram.md](setup/03-dbdiagram.md)).
+- Presentar draw.io / diagrams.net ([setup/03-drawio.md](setup/03-drawio.md)).
 - Recrear en vivo el diagrama de "Biblioteca" a partir de lo que vieron en TablePlus (ida y vuelta entre "esto es lo que ya existe" y "así se diagrama").
 - Concepto de normalización: por qué separamos autores de libros en vez de repetir el nombre del autor en cada fila de libro (mencionar 1FN/2FN/3FN sin exhaustividad).
+- Nota: usamos draw.io (no dbdiagram.io) a propósito — sin export automático a SQL, para que en Clase 2 escriban el CREATE TABLE completamente a mano.
 
 ## Pregunta abierta 2 (~15 min investigan, ~10 min puesta en común)
 
@@ -51,18 +52,20 @@
 
 ## Ejercicio práctico (~1h40)
 
-**Consigna:** modelar en dbdiagram.io el dominio de su propio proyecto de React (Harry Potter, Star Wars, Pokémon, o el que hayan elegido) — **no importa si terminaron el frontend o no**, solo necesitan tener claro qué entidades manejan.
+**Consigna:** modelar en draw.io el dominio de su propio proyecto de React (Harry Potter, Star Wars, Pokémon, o el que hayan elegido) — **no importa si terminaron el frontend o no**, solo necesitan tener claro qué entidades manejan.
 
 Mínimo esperado:
 - Al menos 2 tablas relacionadas entre sí (ej. personajes y casas/facciones, o naves y planetas).
 - Cada tabla con su clave primaria.
 - Al menos una clave foránea marcando la relación.
 - Si termina antes de tiempo: agregar una tercera tabla (ej. relación N a N, como personajes y hechizos que pueden compartirse entre varios personajes) y pensar cómo se modelaría esa relación con una tabla intermedia.
+- Exportar el diagrama como imagen y subirlo a su propio repo de GitHub vía PR (rama `main` protegida, mismo flujo que Backend Introduction).
 
-**Cierre:** 2-3 voluntarios comparten su diagrama y explican las decisiones (qué entidades eligieron, por qué esa relación).
+**Cierre:** 2-3 voluntarios comparten su diagrama (desde el PR mergeado) y explican las decisiones (qué entidades eligieron, por qué esa relación).
 
 ## Notas de facilitación
 
 - El objetivo pedagógico central: que salgan pensando en modelos antes que en código. No apurar el Bloque 3 aunque el grupo venga con ganas de "ya escribir algo".
 - Si la mayoría no llegó con Postgres.app instalado, usar el Bloque 4 completo (y robar 5-10 min del ejercicio) antes de avanzar — sin base de datos funcionando, el resto de la semana se cae.
+- Usamos draw.io en vez de dbdiagram.io a propósito, para practicar el mismo flujo de repo + PR que ya vieron en Backend Introduction, y porque en Clase 2 van a escribir el CREATE TABLE a mano en vez de partir de un export automático.
 - La presentación (`presentacion.pptx`) sigue esta misma estructura de bloques, con la consigna de cada pregunta abierta y del ejercicio como slide propia para que quede a la vista del grupo mientras trabajan.

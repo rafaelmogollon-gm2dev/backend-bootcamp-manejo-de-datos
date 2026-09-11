@@ -21,7 +21,7 @@ Elegir el tipo correcto no es un detalle cosmético: define qué operaciones pod
 
 ### De diagrama a SQL: `CREATE TABLE`
 
-El `CREATE TABLE` es la sentencia que traduce tu diagrama ER en una tabla real. Cada columna que dibujaste en dbdiagram.io se convierte en una línea con su nombre y tipo de dato, y cada clave foránea se declara con `REFERENCES` apuntando a la tabla que referencia.
+El `CREATE TABLE` es la sentencia que traduce tu diagrama ER en una tabla real. Como en Clase 1 diagramaste con draw.io (que no genera SQL automáticamente), acá vas a escribir cada `CREATE TABLE` desde cero: cada tabla que dibujaste se convierte en columnas con su nombre y tipo de dato, y cada clave foránea que marcaste con una flecha se declara con `REFERENCES` apuntando a la tabla que referencia.
 
 ### Las cuatro operaciones básicas (CRUD)
 
@@ -53,7 +53,7 @@ Vas a resolver ejercicios interactivos de JOIN en SQLBolt y tomar nota de al men
 
 A partir del diagrama ER que armaste en Clase 1:
 
-1. Escribí el `CREATE TABLE` de tus tablas (podés partir del export de dbdiagram.io, pero tenés que entender cada línea).
+1. Escribí el `CREATE TABLE` de tus tablas a partir de tu diagrama de draw.io — no hay export automático, así que esta vez lo escribís completamente vos.
 2. Poblá cada tabla con al menos 5 filas de datos de prueba.
 3. Escribí un `SELECT` con `WHERE` y `ORDER BY`, un `INNER JOIN` entre dos de tus tablas relacionadas, y un `UPDATE` y un `DELETE` sobre alguna fila de prueba.
 4. Si te sobra tiempo: agregá un `LEFT JOIN` y compará el resultado contra el `INNER JOIN` sobre tus propios datos.

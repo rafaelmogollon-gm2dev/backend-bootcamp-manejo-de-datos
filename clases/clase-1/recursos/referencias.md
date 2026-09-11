@@ -7,12 +7,12 @@
 - [Database Design Course (freeCodeCamp)](https://www.youtube.com/watch?v=ztHopE5Wnpc) — modelado, normalización y ER (fraccionable en tramos cortos)
 - Buscar "1NF 2NF 3NF explicado" en español (canales como HolaMundo o Fazt) para normalización
 
-## NoSQL (mención)
+## NoSQL / SQL vs. NoSQL
 
+- [Bases de datos SQL vs. NoSQL: ¿Cuál es la diferencia? (IBM)](https://www.ibm.com/think/topics/sql-vs-nosql)
 - [Documentación oficial de MongoDB](https://www.mongodb.com/docs/) — sección de conceptos básicos
-- Buscar "MongoDB vs SQL databases" para comparaciones cortas en video
 
 ## Modelado ER / diagramas
 
-- [dbdiagram.io](https://dbdiagram.io) — modelado ER con sintaxis simple, exporta a SQL
-- [draw.io](https://draw.io) — alternativa manual, sin exportación a SQL
+- [draw.io / diagrams.net](https://app.diagrams.net) — modelado ER manual (arrastrar formas y conectar), sin exportación a SQL — la usada en esta clase
+- [dbdiagram.io](https://dbdiagram.io) — alternativa con sintaxis tipo código, exporta directo a SQL

@@ -5,13 +5,13 @@
 ## Antes de la clase
 
 - Tener cargada la mini-DB "Biblioteca" (si no la cargaron en Clase 1): `psql postgres -f ../clase-1/ejercicios/biblioteca/seed.sql`
-- Traer el diagrama ER de su propio dominio (hecho en Clase 1 en dbdiagram.io)
+- Traer el diagrama ER de su propio dominio (hecho en Clase 1 en draw.io, con su PR ya mergeado en su repo)
 
 ## Bloque 1 (~35 min) — Repaso + tipos de datos + sentencias básicas
 
 - Repaso rápido del modelo de "Biblioteca" (autores → libros → préstamos).
 - Tipos de datos en Postgres: `VARCHAR` vs `TEXT`, `INTEGER` vs `SERIAL`, `BOOLEAN`, `DATE`/`TIMESTAMP` — necesario antes de que escriban su propio `CREATE TABLE` en el ejercicio de hoy.
-- CREATE TABLE: cómo se traduce un diagrama ER a SQL real (mostrar el export de dbdiagram.io y compararlo con `seed.sql`).
+- CREATE TABLE: cómo se traduce un diagrama ER a SQL real, escribiendo cada línea a mano (comparar contra `seed.sql` como referencia de sintaxis, ya que draw.io no genera un export).
 - INSERT, SELECT, UPDATE, DELETE — sintaxis básica, con ejemplos en vivo sobre "Biblioteca" (que ya tienen cargada, así que arrancan viendo resultados reales al toque).
 
 ## Bloque 2 (~25 min) — Relaciones y JOINs
@@ -41,7 +41,7 @@
 
 **Consigna:** a partir del diagrama ER que armaron en Clase 1 (su propio dominio: personajes, hechizos, naves, etc.):
 
-1. Escribir el `CREATE TABLE` de sus tablas (pueden usar el export de dbdiagram.io como punto de partida, pero tienen que entender cada línea).
+1. Escribir el `CREATE TABLE` de sus tablas a partir de su diagrama de draw.io — no hay export, lo escriben completamente a mano.
 2. Poblar cada tabla con al menos 5 filas de datos de prueba.
 3. Escribir:
    - Un SELECT con WHERE y ORDER BY.

@@ -40,7 +40,7 @@ La normalización es el proceso de organizar los datos en tablas separadas para 
 
 - **PostgreSQL**, el motor de base de datos relacional que vamos a usar durante todo el bootcamp — instalación en [setup/01-postgres.md](setup/01-postgres.md).
 - **TablePlus o pgAdmin**, un cliente visual para explorar tablas y datos sin escribir SQL — instalación en [setup/02-tableplus-pgadmin.md](setup/02-tableplus-pgadmin.md).
-- **dbdiagram.io**, para diagramar entidades y relaciones antes de escribir código — guía en [setup/03-dbdiagram.md](setup/03-dbdiagram.md).
+- **draw.io (diagrams.net)**, para diagramar entidades y relaciones antes de escribir código, y **GitHub**, para entregar el diagrama vía Pull Request — guía en [setup/03-drawio.md](setup/03-drawio.md).
 - Alternativa cloud si la instalación local falla: [setup/00-supabase-alternativa-cloud.md](setup/00-supabase-alternativa-cloud.md).
 
 ## Actividades de indagación
@@ -54,15 +54,16 @@ Material de apoyo en [recursos/referencias.md](recursos/referencias.md).
 
 ## Ejercicio práctico: modelá tu propio dominio
 
-Usando [ejercicios/biblioteca](ejercicios/biblioteca/) como referencia (una mini base de datos de autores, libros y préstamos ya armada para que explores), vas a modelar en dbdiagram.io el dominio de tu propio proyecto de React (personajes, hechizos, naves, o lo que hayas elegido) — no importa si terminaste el frontend o no, solo necesitás tener claro qué entidades manejás.
+Usando [ejercicios/biblioteca](ejercicios/biblioteca/) como referencia (una mini base de datos de autores, libros y préstamos ya armada para que explores), vas a modelar en draw.io el dominio de tu propio proyecto de React (personajes, hechizos, naves, o lo que hayas elegido) — no importa si terminaste el frontend o no, solo necesitás tener claro qué entidades manejás.
 
 **Consigna:**
 - Al menos 2 tablas relacionadas entre sí.
 - Cada tabla con su clave primaria.
 - Al menos una clave foránea marcando la relación.
 - Si te sobra tiempo: agregá una tercera tabla con una relación N a N (por ejemplo, personajes y hechizos que pueden compartirse entre varios personajes) y pensá cómo modelarías esa relación con una tabla intermedia.
+- Exportá el diagrama como imagen y subilo a tu propio repo de GitHub vía Pull Request (mismo flujo que ya usaste en Backend Introduction: rama `main` protegida, PR con review).
 
-Este diagrama es la base que vas a usar en la Clase 2 para crear las tablas reales con SQL.
+Este diagrama, sin export automático a SQL, es la base que vas a usar en la Clase 2 para escribir el `CREATE TABLE` de tus tablas completamente a mano.
 
 ## Para llevarte de esta clase
 

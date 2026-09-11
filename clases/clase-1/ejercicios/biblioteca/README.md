@@ -30,5 +30,5 @@ Deberías ver 6 filas con título de libro + nombre de autor.
 
 ## Uso en clase
 
-- **Clase 1:** explorar la estructura ya cargada con TablePlus/pgAdmin (sin escribir SQL todavía) y compararla contra el diagrama ER en dbdiagram.io.
+- **Clase 1:** explorar la estructura ya cargada con TablePlus/pgAdmin (sin escribir SQL todavía) y compararla contra el diagrama ER en draw.io.
 - **Clase 2:** escribir SELECT/INSERT/UPDATE/DELETE y JOINs directamente sobre estos datos ya existentes.
