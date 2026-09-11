@@ -75,6 +75,8 @@ Documentación oficial de MongoDB (conceptos básicos): https://www.mongodb.com/
 
 Antes de crear tu propia base de datos, vas a explorar una ya armada ("Biblioteca": autores → libros → préstamos) con un cliente visual (TablePlus o pgAdmin), sin escribir SQL todavía.
 
+El bloque de código de abajo es el SQL que "instala" esos datos de ejemplo — no hace falta que entiendas la sintaxis todavía, solo copialo tal cual está y ejecutalo. En la próxima clase vamos a ver en detalle qué es cada instrucción (`CREATE TABLE`, `INSERT`) y vas a escribir las tuyas propias.
+
 Para tenerla en tu propia máquina, con Postgres corriendo (ver sección 7.1), abrí la Terminal, pegá el siguiente contenido en un archivo llamado `seed.sql` (podés crearlo con cualquier editor de texto), y corré:
 
 ```bash
