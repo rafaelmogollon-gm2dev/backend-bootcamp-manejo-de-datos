@@ -66,8 +66,10 @@ Más adelante en el bootcamp vas a ver también relaciones **N a N** (por ejempl
 
 No todas las bases de datos son relacionales. Las bases de datos NoSQL (como MongoDB) guardan la información como documentos flexibles, sin una estructura de tablas fija ni relaciones explícitas mediante claves. Cada enfoque tiene sus casos de uso.
 
-Video comparativo SQL vs. NoSQL — buscar "SQL vs NoSQL databases" para comparaciones cortas en video
+Bases de datos SQL vs. NoSQL: ¿Cuál es la diferencia? (IBM): https://www.ibm.com/think/topics/sql-vs-nosql
 Documentación oficial de MongoDB (conceptos básicos): https://www.mongodb.com/docs/
+
+Con estas dos referencias como punto de partida, buscá material adicional si te sirve — es una buena oportunidad para practicar cómo evaluar la calidad de una fuente técnica en inglés o español.
 
 **Pregunta abierta para investigar en clase:** ¿cuándo elegirías SQL sobre NoSQL, o viceversa? Pensá en tu propio proyecto de React: ¿cómo modelarías tus datos en cada enfoque?
 
