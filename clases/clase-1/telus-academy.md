@@ -26,9 +26,11 @@ MATERIAL 1: Introducción a Bases de Datos y Modelado
 
 ## Por qué esto importa
 
-Hasta ahora, la API que construiste en la Semana 1 guarda todo en un array de JavaScript. Funciona mientras el servidor esté corriendo, pero apenas lo reiniciás — o si el proceso se cae — todos los datos desaparecen. Eso no es un detalle menor: ninguna aplicación real puede depender de que el servidor nunca se apague.
+Ya conocés una forma de persistir datos del lado del cliente: `localStorage` o `sessionStorage` en el navegador. Sirve para guardar preferencias del usuario o estado de una sesión, pero tiene un límite claro — esos datos viven solo en ese navegador, en esa máquina. No hay forma de que dos usuarios distintos, desde dos dispositivos distintos, vean la misma información compartida.
 
-Una base de datos resuelve exactamente ese problema: es un sistema diseñado para guardar información de forma persistente, en disco, independiente del ciclo de vida de tu aplicación. Vas a poder apagar y prender tu API mil veces y los datos van a seguir ahí.
+Ahí es donde entra el servidor. En la Semana 1 construiste una API que guarda datos en memoria — un array de JavaScript que vive mientras el proceso de Node está corriendo. Esto ya resuelve el problema de compartir datos entre usuarios (todos hablan con el mismo servidor), pero introduce uno nuevo: esa memoria es volátil. Apenas reiniciás el servidor, o si el proceso se cae, todos los datos desaparecen. Ninguna aplicación real puede depender de que el servidor nunca se apague.
+
+Una base de datos resuelve exactamente ese problema: es un sistema diseñado para guardar información en disco, de forma persistente e independiente del ciclo de vida del proceso que la usa. El servidor puede reiniciarse, actualizarse, incluso migrar a otra máquina — los datos siguen estando ahí.
 
 Esta clase es la puerta de entrada a esa idea, y a algo igual de importante: antes de escribir código, conviene pensar la estructura de los datos.
 
@@ -36,9 +38,9 @@ Esta clase es la puerta de entrada a esa idea, y a algo igual de importante: ant
 
 ## 1. Repaso + por qué persistencia real (Portada)
 
-- Repaso relámpago: qué construiste en la Semana 1 (API Express con CRUD en memoria).
-- El problema: si reiniciás el servidor, ¿qué pasa con los datos?
-- Una base de datos relacional resuelve exactamente ese problema.
+- Tres niveles de persistencia que ya conocés o estás por conocer: `localStorage`/`sessionStorage` en el cliente, memoria en el servidor (Semana 1), y ahora base de datos.
+- El problema concreto de la memoria en el servidor: si reiniciás el servidor, ¿qué pasa con los datos?
+- Una base de datos relacional resuelve exactamente ese problema, agregando además la capacidad de modelar relaciones entre distintos tipos de datos.
 
 ---
 
