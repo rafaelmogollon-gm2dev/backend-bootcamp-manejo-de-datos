@@ -22,7 +22,7 @@ MATERIAL 1: Introducción a Bases de Datos y Modelado
 **Notes (Markdown):**
 
 ```markdown
-Este documento sigue el orden de las filminas de la presentación. Cada sección corresponde a una diapositiva.
+# Introducción a Bases de Datos y Modelado
 
 ## Por qué esto importa
 
