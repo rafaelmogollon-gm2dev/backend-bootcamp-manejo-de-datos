@@ -15,7 +15,7 @@
 ### 3. Modelar en draw.io
 - Entrá a [app.diagrams.net](https://app.diagrams.net) y creá un diagrama nuevo (guardado en "Device", sin necesidad de cuenta).
 - Definí al menos 2 tablas relacionadas entre sí (ej. personajes y casas/facciones, o naves y planetas) — cada tabla como un rectángulo con sus columnas listadas.
-- Cada tabla necesita su clave primaria (columna "id").
+- Cada tabla necesita su clave primaria (columna **id**).
 - Al menos una clave foránea tiene que marcar la relación entre tus tablas (una flecha entre la columna que referencia y la tabla referenciada).
 
 ### 4. Si te sobra tiempo
@@ -25,12 +25,12 @@
 ### 5. Exportar y entregar vía GitHub
 - Exportá el diagrama como imagen (File → Export as → PNG o SVG).
 - Creá un repo en GitHub (o reutilizá el de Backend Introduction si aplica).
-- Protegé la rama principal "main" activando estas reglas:
+- Protegé la rama principal **main** activando estas reglas:
   - Require pull request before merging
   - Require approvals
   - Block force pushes
   - Restrict deletions
-- Subí tu imagen exportada en una rama nueva, y abrí un Pull Request hacia la rama "main".
+- Subí tu imagen exportada en una rama nueva, y abrí un Pull Request hacia la rama **main**.
 - Mergeá el PR (con review si corresponde).
 
 ## Entregable (enviar por Slack en #canal)
