@@ -201,14 +201,18 @@ Herramienta 100% web para diagramar entidades y relaciones dibujando cajas y con
 4. Conectá las tablas relacionadas con una flecha, desde la columna que referencia (clave foránea) hacia la tabla referenciada.
 5. Repetí para todas tus tablas y relaciones.
 
-**Exportar la imagen:** una vez terminado, andá a File → Export as → PNG (o SVG). Guardá el archivo, por ejemplo, como `diagrama-er.png`.
+**Exportar la imagen:** una vez terminado, andá a File → Export as → PNG (o SVG). Guardá el archivo, por ejemplo, como "diagrama-er.png".
 
 **Entregar vía GitHub (mismo flujo que Backend Introduction):**
-1. Creá un repo nuevo en GitHub (ej. `ejercicio-modelado-tu-nombre`), inicializado con un `README.md`.
-2. Verificá que la rama por defecto sea `main` (Settings → General → Default branch).
-3. Protegé `main` (Settings → Branches → Add branch ruleset): Require a pull request before merging, Require approvals (mínimo 1), Block force pushes, Restrict deletions.
-4. Cloná el repo, creá una rama (ej. `feature/diagrama-er`), agregá tu imagen exportada.
-5. Commit, push, y abrí un Pull Request hacia `main`.
+1. Creá un repo nuevo en GitHub (ej. "ejercicio-modelado-tu-nombre"), inicializado con un README.md.
+2. Verificá que la rama por defecto sea "main" (Settings → General → Default branch).
+3. Protegé la rama "main" (Settings → Branches → Add branch ruleset), activando estas reglas:
+   - Require pull request before merging
+   - Require approvals (mínimo 1)
+   - Block force pushes
+   - Restrict deletions
+4. Cloná el repo, creá una rama nueva (ej. "feature/diagrama-er"), agregá tu imagen exportada.
+5. Commit, push, y abrí un Pull Request hacia la rama "main".
 6. Mergeá el PR (con review si corresponde).
 
 **Verificar que funcionó:** el PR mergeado muestra la imagen del diagrama visible directo en el diff de GitHub.
