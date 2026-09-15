@@ -216,13 +216,17 @@ Esto crea las 3 tablas dentro de la base de datos **postgres**, y las llena con 
 
 ### Paso 4: explorar los datos con pgAdmin
 
-Abrí pgAdmin (ya conectado a **postgres**, ver sección 1.2) y navegá a las tablas **authors**, **books** y **loans**. Vas a poder ver:
+Abrí pgAdmin (ya conectado a **postgres**, ver sección 1.2) y en el árbol de la izquierda navegá así: tu servidor → **postgres** (la base de datos) → **Schemas** → **public** → **Tables**. Ahí vas a encontrar las tablas **authors**, **books** y **loans**.
+
+Para ver las filas de una tabla: hacé click derecho sobre ella → **View/Edit Data** → **All Rows**. Se abre una grilla con todas las columnas y filas de esa tabla, similar a una planilla de cálculo.
+
+Repitiendo esto para cada tabla, vas a poder ver:
 
 - La clave primaria (columna **id**) de cada tabla.
 - La clave foránea (columna **author_id** en **books**, columna **book_id** en **loans**) conectando una tabla con otra.
 - Los datos reales cargados por el script.
 
-Explorá por tu cuenta 5-10 minutos: cambiá algún valor, agregá una fila nueva desde la interfaz visual (sin escribir SQL), y prestá atención a qué pasa.
+Explorá por tu cuenta 5-10 minutos: cambiá algún valor directamente en esa grilla, agregá una fila nueva (hay un botón "+" o una fila vacía al final de la grilla para eso), sin escribir SQL, y prestá atención a qué pasa.
 
 ---
 
