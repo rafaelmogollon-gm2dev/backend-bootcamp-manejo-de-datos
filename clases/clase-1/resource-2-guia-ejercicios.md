@@ -19,7 +19,7 @@ Todos los entregables van al mismo repo de GitHub: podés subirlos en un solo Pu
 **Preguntas:**
 1. ¿Cuál es la diferencia principal entre una base de datos relacional (SQL) y una no relacional (NoSQL)?
 2. Nombrá al menos dos motores de base de datos relacionales, y dos no relacionales (de categorías distintas: documentos, clave-valor, o columnar).
-3. Pensá en tu propio proyecto de React (el dominio que vas a modelar en el Bloque 3): ¿cómo se vería si lo modelaras como base de datos relacional? ¿Y como base de datos de documentos (tipo MongoDB)? Describí brevemente ambos enfoques.
+3. Tomemos el ejemplo de biblioteca (authors, books, loans) que ya usaste en el MATERIAL. En una base relacional, esos datos viven en 3 tablas separadas, conectadas por claves foráneas. Si tuvieras que modelar ese mismo ejemplo como base de datos de documentos (tipo MongoDB), una opción posible sería tener un solo documento por libro, con los datos del autor "adentro" del documento (en vez de en otra tabla aparte). Con esa idea como referencia: elegí 2 o 3 entidades de tu propio proyecto (por ejemplo, personajes y su casa/facción) y describí brevemente cómo se verían como documentos, en vez de como tablas separadas.
 4. ¿En qué situación elegirías una base no relacional en vez de una relacional? Dame un ejemplo concreto (no tiene que ser de tu proyecto).
 
 ---
@@ -37,8 +37,8 @@ Todos los entregables van al mismo repo de GitHub: podés subirlos en un solo Pu
 **Preguntas:**
 1. ¿Qué problema concreto tiene una tabla única que repite datos de un mismo autor en cada fila de libro (en vez de separar autores y libros en dos tablas)?
 2. ¿Qué es la normalización, con tus propias palabras?
-3. Investigá qué son 1FN, 2FN y 3FN. Elegí una de las tres y explicá, en un par de oraciones, qué regla agrega respecto de la anterior.
-4. Pensá en el dominio de tu propio proyecto (el que vas a modelar en el Bloque 3): dame un ejemplo de un dato que NO deberías repetir en varias filas, y en qué tabla debería vivir en cambio.
+3. La normalización tiene niveles formales llamados 1FN, 2FN y 3FN, cada uno más estricto que el anterior. Investigá qué es la 1FN (Primera Forma Normal). Explicá con tus propias palabras qué regla exige.
+4. **Entidad** es el nombre que le damos a cada "cosa" distinta que modelamos como su propia tabla (por ejemplo, en el ejemplo de biblioteca, "autor" es una entidad y "libro" es otra entidad). Pensá en el dominio de tu propio proyecto de React: nombrá 2 entidades distintas que tenga tu dominio, y para cada una, un dato que le pertenece SOLO a esa entidad (por ejemplo: la nacionalidad le pertenece al autor, no al libro).
 
 ---
 
@@ -50,11 +50,11 @@ Todos los entregables van al mismo repo de GitHub: podés subirlos en un solo Pu
 
 **Requerimientos:**
 - Tener draw.io accesible (app.diagrams.net, no hace falta cuenta).
-- Tener un repo de GitHub con la rama principal protegida (mismo flujo que Backend Introduction).
+- Tener un repo de GitHub con la rama principal protegida (mismo flujo que Backend Introduction — podés reutilizar ese repo, o crear uno nuevo con la misma configuración de rama protegida).
 
 **Pasos:**
 
-1. **Elegir el dominio.** Usá el mismo dominio de tu proyecto de React (personajes, hechizos, naves, planetas, o el que hayas elegido). No importa si terminaste el frontend o no — solo necesitás tener claro qué entidades maneja tu dominio.
+1. **Elegir el dominio.** Usá el mismo dominio de tu proyecto de React (personajes, hechizos, naves, planetas, o el que hayas elegido). Podés pensar en el proyecto que trabajaste en los módulos anteriores como el proyecto de React — solo necesitás tener claro qué entidades maneja ese dominio.
 
 2. **Explorar el ejemplo guiado (opcional, antes de arrancar).** Si todavía no lo hiciste, cargá la mini base de datos de biblioteca (authors → books → loans) — el SQL para crearla está en el MATERIAL de esta clase, sección 6 — y explorala con pgAdmin. Identificá dónde está la clave primaria y dónde la clave foránea antes de diseñar la tuya.
 
@@ -70,4 +70,3 @@ Todos los entregables van al mismo repo de GitHub: podés subirlos en un solo Pu
 **Criterios de evaluación:**
 - Bloque 1 y 2: las respuestas muestran que investigaste y entendiste los conceptos (no hace falta que sean perfectas, sí que reflejen comprensión propia).
 - Bloque 3: al menos 2 tablas relacionadas entre sí, cada una con su clave primaria; al menos una clave foránea correctamente marcada; un PR mergeado con la rama principal protegida y la imagen del diagrama visible en el repo.
-- El alumno puede explicar verbalmente por qué eligió esas entidades y esa relación (se valida en la puesta en común de la clase, no solo por el diagrama en sí).
