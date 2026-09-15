@@ -246,7 +246,9 @@ nationality                        title
 
 La flecha indica que **author_id** en la tabla **books** es una clave foránea que apunta al **id** (clave primaria) de la tabla **authors**. Cada tabla es una entidad, cada flecha marca una relación.
 
-En la próxima clase vas a hacer este mismo ejercicio con tu propio dominio, usando una herramienta de diagramado (los detalles están en la Guía de Ejercicios de esta clase).
+En esta misma clase vas a hacer este mismo ejercicio con tu propio dominio, usando una herramienta de diagramado (los detalles están en la Guía de Ejercicios de esta clase).
+
+**Tip para indagar por tu cuenta:** pgAdmin puede generar automáticamente un diagrama ER a partir de una base de datos que ya existe, sin que vos lo dibujes a mano. Con **postgres** ya conectado, en el árbol de la izquierda hacé click derecho sobre el schema **public** (dentro de tu base de datos) y buscá una opción como "ERD Tool" o similar (el nombre puede variar levemente según la versión de pgAdmin). Esa herramienta te va a dibujar automáticamente las tablas **authors**, **books** y **loans** con sus relaciones — es una buena forma de comparar el diagrama "hecho a mano" contra uno generado por la herramienta a partir de tablas reales.
 
 ---
 
