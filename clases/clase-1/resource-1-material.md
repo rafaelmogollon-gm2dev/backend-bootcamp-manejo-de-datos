@@ -124,7 +124,27 @@ Es el mismo concepto que ya usaste en la Semana 1 con tu API en memoria (crear, 
 
 ---
 
-## 5. Explorar una base de datos ya armada
+## 5. Tipos de datos y constraints
+
+Cada columna de una tabla tiene un **tipo de dato**, que define qué se puede guardar ahí. Vas a ver estos con más profundidad en la próxima clase, pero como ya aparecen en el script que vamos a cargar en la siguiente sección, conviene reconocerlos ahora:
+
+- **INTEGER**: un número entero.
+- **SERIAL**: un número entero que se autoincrementa solo — es el tipo típico de una clave primaria como **id**, para no tener que asignar el número a mano en cada fila nueva.
+- **VARCHAR(n)**: texto, con un límite de **n** caracteres (por ejemplo, **VARCHAR(100)** admite hasta 100 caracteres).
+- **BOOLEAN**: verdadero o falso.
+- **DATE**: una fecha (sin hora).
+
+Además del tipo de dato, una columna puede tener **constraints**: reglas que la base de datos aplica automáticamente para proteger la integridad de los datos, sin que tu código tenga que verificarlas a mano.
+
+- **NOT NULL**: esa columna no puede quedar vacía. Si intentás guardar una fila sin ese dato, la base de datos rechaza la operación.
+- **DEFAULT**: si no especificás un valor para esa columna, se usa automáticamente el valor por defecto indicado (por ejemplo, que una fecha se complete sola con la fecha de hoy).
+- **UNIQUE**: no puede haber dos filas con el mismo valor en esa columna (por ejemplo, para asegurar que no se repita un email).
+
+Vas a ver estos mismos elementos — **NOT NULL** y **DEFAULT** — en el script SQL de la próxima sección.
+
+---
+
+## 6. Explorar una base de datos ya armada
 
 Para practicar todo lo anterior con datos reales (sin escribir SQL todavía), vamos a usar una mini base de datos ya armada llamada "Biblioteca", con tres tablas: **autores**, **libros** y **prestamos**.
 
@@ -202,7 +222,7 @@ Explorá por tu cuenta 5-10 minutos: cambiá algún valor, agregá una fila nuev
 
 ---
 
-## 6. Modelado Entidad-Relación (ER)
+## 7. Modelado Entidad-Relación (ER)
 
 Antes de crear las tablas de un sistema nuevo, conviene diagramar el modelo de datos: qué entidades existen, qué atributos tiene cada una, y cómo se relacionan entre sí. A esto se lo llama **modelado Entidad-Relación (ER)**.
 
@@ -222,7 +242,7 @@ En la próxima clase vas a hacer este mismo ejercicio con tu propio dominio, usa
 
 ---
 
-## 7. Normalización
+## 8. Normalización
 
 Si vas a modelar un sistema con autores y libros, una opción ingenua sería tener una sola tabla con el título del libro y el nombre completo del autor repetido en cada fila. El problema: si ese autor cambia de nombre, o hay un error de tipeo, hay que corregirlo en decenas de filas.
 
@@ -235,7 +255,7 @@ Documentación de referencia:
 
 ---
 
-## 8. Para llevarte de esta clase
+## 9. Para llevarte de esta clase
 
 - Una base de datos relacional es sinónimo de persistencia real, no de memoria volátil.
 - CRUD (Create, Read, Update, Delete) es el conjunto de operaciones básicas sobre cualquier dato persistente.
