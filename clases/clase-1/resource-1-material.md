@@ -19,76 +19,58 @@ Esta clase es la puerta de entrada a esa idea, y a algo igual de importante: ant
 
 ## 1. Antes de empezar: instalar las herramientas
 
-Para poder seguir el resto de este material y hacer los ejercicios, necesitás tener instaladas dos cosas: el motor de base de datos (PostgreSQL) y un cliente visual para verlo (TablePlus o pgAdmin).
+Para poder seguir el resto de este material y hacer los ejercicios, necesitás tener instaladas dos cosas: el motor de base de datos (PostgreSQL) y pgAdmin, el cliente visual para verlo.
 
 ### 1.1 PostgreSQL (con Postgres.app)
 
 PostgreSQL es el motor de base de datos relacional que vamos a usar en todo el bootcamp. **No viene instalado por defecto en macOS** — hay que instalarlo. Postgres.app es la forma más simple de tenerlo corriendo en una Mac: es una aplicación normal, sin terminal ni gestores de paquetes.
 
-1. Entrá a https://postgresapp.com y descargá el instalador.
+1. Entrá a postgresapp.com y descargá el instalador.
 2. Abrí el archivo **.dmg** descargado y arrastrá el ícono de Postgres.app a la carpeta **Aplicaciones**.
 3. Abrí Postgres.app desde **Aplicaciones** (o Spotlight, cmd+espacio y escribí "Postgres").
    - Si Mac bloquea la apertura ("no se puede abrir porque no se pudo verificar el desarrollador"): andá a Preferencias del Sistema → Privacidad y Seguridad, bajá hasta el mensaje sobre Postgres.app y hacé click en "Abrir de todas formas".
 4. En la ventana que aparece vas a ver una lista de versiones de PostgreSQL para elegir (14, 15, 16, 17, etc.) — **elegí la 16** y hacé click en "Initialize". Esto crea un servidor Postgres nuevo con esa versión y lo deja corriendo (vas a ver un elefante 🐘 en la barra de menú, arriba a la derecha).
    - Si Postgres.app no te ofrece elegir versión y directamente inicializa una, no hay problema: cualquier versión 15+ funciona igual.
 
-**psql** es la herramienta de línea de comandos para hablarle a Postgres desde la Terminal. **Tampoco viene instalada por defecto** — Postgres.app la instala, pero hay que agregarla al PATH de tu Mac para poder usarla desde cualquier carpeta:
+**psql** es la herramienta de línea de comandos para hablarle a Postgres desde la Terminal. **Tampoco viene instalada por defecto** — Postgres.app la instala, pero hay que agregarla al PATH de tu Mac para poder usarla desde cualquier carpeta. No hace falta instalar Homebrew para esto, alcanza con:
 
 1. Abrí la Terminal.
-2. Ejecutá:
-   ```bash
-   sudo mkdir -p /etc/paths.d && echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp
-   ```
+2. Ejecutá este comando (podés copiarlo y pegarlo tal cual):
+
+**sudo mkdir -p /etc/paths.d && echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp**
+
 3. Cerrá la Terminal y abrila de nuevo (esto recarga el PATH).
 
 **Verificar que funcionó:** en una Terminal nueva, ejecutá:
-```bash
-psql --version
-```
+
+**psql --version**
+
 Debería mostrar algo como "psql (PostgreSQL) 16.x". Después ejecutá:
-```bash
-psql postgres
-```
+
+**psql postgres**
+
 Si ves un prompt como "postgres=#", estás adentro (para salir, escribí el comando **\q** y Enter).
 
 **Datos de conexión por defecto:** host **localhost**, puerto **5432**, usuario tu usuario de Mac (ejecutá el comando **whoami** en la Terminal si no lo recordás), contraseña vacía, base de datos **postgres**.
 
 **Errores comunes:**
 - *"psql: command not found"*: el PATH no se actualizó. Cerrá todas las Terminales y abrí una nueva.
-- *Puerto 5432 ocupado*: puede haber otro Postgres corriendo. Podés ver qué proceso es ejecutando en la Terminal:
-  ```bash
-  lsof -i :5432
-  ```
-  Si no es Postgres.app, cerralo con el comando **kill** seguido del número de proceso que te mostró.
+- *Puerto 5432 ocupado*: puede haber otro Postgres corriendo. Podés ver qué proceso es ejecutando en la Terminal el comando **lsof -i :5432**. Si no es Postgres.app, cerralo con el comando **kill** seguido del número de proceso que te mostró.
 - *"connection refused"*: el servidor no está corriendo. Abrí Postgres.app y verificá que el elefante de la barra de menú esté activo.
-- *"role no existe"*: volvé a hacer click en "Initialize" desde la app, o creá el rol manualmente ejecutando en la Terminal:
-  ```bash
-  createuser -s $(whoami)
-  ```
+- *"role no existe"*: volvé a hacer click en "Initialize" desde la app, o creá el rol manualmente ejecutando en la Terminal el comando **createuser -s $(whoami)**.
 
-### 1.2 Cliente visual: TablePlus o pgAdmin
+### 1.2 pgAdmin 4 (cliente visual)
 
-Un cliente visual permite ver tablas, datos y relaciones sin escribir SQL a mano todo el tiempo. Elegí **una** de las dos opciones (no hace falta instalar ambas).
+pgAdmin permite ver tablas, datos y relaciones sin escribir SQL a mano todo el tiempo. Es 100% gratis y sin límites.
 
-**Opción A — TablePlus (recomendado, más liviano):**
-1. Entrá a https://tableplus.com y descargá la versión para Mac. Abrí el archivo **.dmg** y arrastrá TablePlus a **Aplicaciones**.
-2. Abrilo, y al abrir por primera vez, click en "Create a new connection" → elegí **PostgreSQL**.
-3. Completá: Host **localhost**, Port **5432**, User tu usuario de Mac, Password vacío, Database **postgres**.
-4. Click en "Test" (debería aparecer un tilde verde) y luego "Connect".
-   - Si la app no abre por Gatekeeper, ejecutá en la Terminal:
-     ```bash
-     xattr -cr /Applications/TablePlus.app
-     ```
-
-**Opción B — pgAdmin 4 (100% gratis, sin límites):**
-1. Entrá a https://www.pgadmin.org/download/pgadmin-4-macos/ y descargá el instalador. Arrastralo a **Aplicaciones**.
+1. Entrá a pgadmin.org/download/pgadmin-4-macos y descargá el instalador. Arrastralo a **Aplicaciones**.
 2. Abrilo — la primera vez pide configurar una contraseña maestra (solo para la app, no es la de Postgres).
 3. Click derecho en "Servers" → "Register" → "Server...". En General, poné un nombre; en Connection: host **localhost**, port **5432**, maintenance database **postgres**, username tu usuario de Mac, password vacío.
 4. Guardar.
 
 **Verificar que funcionó:** deberías ver la base de datos **postgres** con sus esquemas en el árbol de la izquierda.
 
-**Alternativa cloud, si la instalación local falla:** Supabase (https://supabase.com) ofrece un PostgreSQL real gestionado en la nube, gratis, sin instalar nada. Creá una cuenta, un proyecto nuevo, y en Project Settings → Database vas a encontrar la connection string para usar en TablePlus/pgAdmin o desde psql. Los proyectos free se pausan después de un tiempo sin uso — si eso pasa, entrá al dashboard y click en "Restore project".
+**Alternativa cloud, si la instalación local falla:** Supabase (supabase.com) ofrece un PostgreSQL real gestionado en la nube, gratis, sin instalar nada. Creá una cuenta, un proyecto nuevo, y en Project Settings → Database vas a encontrar la connection string para usar en pgAdmin o desde psql. Los proyectos free se pausan después de un tiempo sin uso — si eso pasa, entrá al dashboard y click en "Restore project".
 
 ---
 
@@ -124,8 +106,8 @@ No todas las bases de datos organizan la información en tablas. Existen dos gra
 Cada categoría tiene sus casos de uso: una base relacional es una buena base por defecto cuando los datos tienen una estructura clara y relaciones entre entidades (como en la mayoría de las aplicaciones de negocio); una no relacional puede convenir cuando la estructura de los datos cambia mucho, o cuando se necesita muchísima velocidad de lectura/escritura simple.
 
 Documentación de referencia:
-- Bases de datos SQL vs. NoSQL: ¿Cuál es la diferencia? (IBM): https://www.ibm.com/think/topics/sql-vs-nosql
-- Documentación oficial de MongoDB (conceptos básicos): https://www.mongodb.com/docs/
+- Bases de datos SQL vs. NoSQL: ¿Cuál es la diferencia? (IBM): www.ibm.com/think/topics/sql-vs-nosql
+- Documentación oficial de MongoDB (conceptos básicos): www.mongodb.com/docs
 
 ---
 
@@ -146,11 +128,14 @@ Es el mismo concepto que ya usaste en la Semana 1 con tu API en memoria (crear, 
 
 Para practicar todo lo anterior con datos reales (sin escribir SQL todavía), vamos a usar una mini base de datos ya armada llamada "Biblioteca", con tres tablas: **autores**, **libros** y **prestamos**.
 
-### Paso 1: crear el archivo con el script SQL
+### Paso 1: crear la base de datos
+
+Postgres.app ya crea una base de datos llamada **postgres** por defecto — vamos a usar esa misma, no hace falta crear una nueva. Si en algún momento quisieras crear una base de datos separada para otro proyecto, el comando en la Terminal sería **createdb nombre_de_tu_base** (no lo necesitás para este ejercicio, pero es bueno saber que existe).
+
+### Paso 2: crear el archivo con el script SQL
 
 Abrí cualquier editor de texto y creá un archivo llamado **seed.sql**, con este contenido:
 
-```sql
 DROP TABLE IF EXISTS prestamos;
 DROP TABLE IF EXISTS libros;
 DROP TABLE IF EXISTS autores;
@@ -194,23 +179,20 @@ INSERT INTO libros (titulo, autor_id, anio, disponible) VALUES
 INSERT INTO prestamos (libro_id, nombre_lector, fecha_prestamo, fecha_devolucion) VALUES
   (3, 'Mati', '2026-08-15', NULL),
   (6, 'Joaquín', '2026-08-20', NULL);
-```
 
 No hace falta que entiendas todavía la sintaxis de cada instrucción — con lo que viste en la sección de CRUD alcanza para reconocer que hay **CREATE TABLE** (crea las tablas) e **INSERT** (agrega filas). En la próxima clase vas a escribir instrucciones como estas por tu cuenta.
 
-### Paso 2: cargar el script en Postgres
+### Paso 3: cargar el script en Postgres
 
 Con Postgres corriendo (Postgres.app abierto), abrí la Terminal en la carpeta donde guardaste **seed.sql** y ejecutá:
 
-```bash
-psql postgres -f seed.sql
-```
+**psql postgres -f seed.sql**
 
-Esto crea las 3 tablas y las llena con los datos de ejemplo.
+Esto crea las 3 tablas dentro de la base de datos **postgres**, y las llena con los datos de ejemplo.
 
-### Paso 3: explorar los datos con TablePlus o pgAdmin
+### Paso 4: explorar los datos con pgAdmin
 
-Abrí tu cliente visual (ya conectado a **postgres**, ver sección 1.2) y navegá a las tablas **autores**, **libros** y **prestamos**. Vas a poder ver:
+Abrí pgAdmin (ya conectado a **postgres**, ver sección 1.2) y navegá a las tablas **autores**, **libros** y **prestamos**. Vas a poder ver:
 
 - La clave primaria (columna **id**) de cada tabla.
 - La clave foránea (columna **autor_id** en **libros**, columna **libro_id** en **prestamos**) conectando una tabla con otra.
@@ -226,19 +208,17 @@ Antes de crear las tablas de un sistema nuevo, conviene diagramar el modelo de d
 
 Por ejemplo, el modelo de "Biblioteca" que acabás de explorar se diagrama así:
 
-```
-┌─────────────────┐         ┌──────────────────────┐
-│     autores      │         │        libros         │
-├─────────────────┤         ├──────────────────────┤
-│ id (PK)          │◄────────│ autor_id (FK)          │
-│ nombre           │         │ id (PK)                │
-│ nacionalidad     │         │ titulo                 │
-└─────────────────┘         │ anio                    │
-                              │ disponible              │
-                              └──────────────────────┘
-```
+TABLA: autores                    TABLA: libros
+-----------------                 -----------------------
+id (PK)          <----------      autor_id (FK)
+nombre                             id (PK)
+nacionalidad                       titulo
+                                   anio
+                                   disponible
 
-Cada caja es una tabla, cada línea con flecha marca una clave foránea apuntando a la clave primaria de otra tabla. En la próxima clase vas a hacer este mismo ejercicio con tu propio dominio, usando una herramienta de diagramado (los detalles están en la Guía de Ejercicios de esta clase).
+La flecha indica que **autor_id** en la tabla **libros** es una clave foránea que apunta al **id** (clave primaria) de la tabla **autores**. Cada tabla es una entidad, cada flecha marca una relación.
+
+En la próxima clase vas a hacer este mismo ejercicio con tu propio dominio, usando una herramienta de diagramado (los detalles están en la Guía de Ejercicios de esta clase).
 
 ---
 
@@ -249,9 +229,9 @@ Si vas a modelar un sistema con autores y libros, una opción ingenua sería ten
 La normalización es el proceso de organizar los datos en tablas separadas para que cada dato viva en un único lugar, y las relaciones entre esas tablas se expresen mediante claves. Existen niveles formales de normalización (1FN, 2FN, 3FN) — el modelo de "Biblioteca" que viste ya está normalizado: los datos del autor viven solo en la tabla **autores**, no repetidos en cada libro.
 
 Documentación de referencia:
-- Documentación oficial de PostgreSQL: https://www.postgresql.org/docs/
-- postgresqltutorial.com: https://www.postgresqltutorial.com
-- Database Design Course (freeCodeCamp) — modelado, normalización y ER: https://www.youtube.com/watch?v=ztHopE5Wnpc
+- Documentación oficial de PostgreSQL: www.postgresql.org/docs
+- postgresqltutorial.com
+- Database Design Course (freeCodeCamp) — modelado, normalización y ER: www.youtube.com/watch?v=ztHopE5Wnpc
 
 ---
 
