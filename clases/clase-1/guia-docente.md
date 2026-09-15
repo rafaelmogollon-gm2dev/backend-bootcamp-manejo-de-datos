@@ -29,8 +29,8 @@
   ```bash
   psql postgres -f ejercicios/biblioteca/seed.sql
   ```
-- Abrir TablePlus/pgAdmin y navegar juntos: tablas `autores`, `libros`, `prestamos`.
-- Señalar en vivo: ahí está la clave primaria (`id`), ahí está la clave foránea (`autor_id`), así se ve una relación 1 a N sin explicarla todavía en profundidad — solo que la vean con datos reales antes de la teoría formal.
+- Abrir pgAdmin y navegar juntos: tablas `authors`, `books`, `loans`.
+- Señalar en vivo: ahí está la clave primaria (`id`), ahí está la clave foránea (`author_id`), así se ve una relación 1 a N sin explicarla todavía en profundidad — solo que la vean con datos reales antes de la teoría formal.
 - Que cada alumno explore por su cuenta 5-10 minutos: cambiar valores, agregar una fila manualmente desde la interfaz visual (sin SQL), y contar qué encontraron.
 
 ## Bloque 3 (~20 min) — Modelado ER: pensar antes de codear

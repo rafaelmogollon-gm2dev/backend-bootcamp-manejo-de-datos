@@ -4,7 +4,7 @@
 
 - [Documentación oficial de PostgreSQL](https://www.postgresql.org/docs/) — referencia canónica
 - [postgresqltutorial.com](https://www.postgresqltutorial.com) — más digerible que la doc oficial para consulta rápida
-- [Database Design Course (freeCodeCamp)](https://www.youtube.com/watch?v=ztHopE5Wnpc) — modelado, normalización y ER (fraccionable en tramos cortos)
+- [Normalización en SQL (DataCamp)](https://www.datacamp.com/es/tutorial/normalization-in-sql) — modelado, normalización y ER
 - Buscar "1NF 2NF 3NF explicado" en español (canales como HolaMundo o Fazt) para normalización
 
 ## NoSQL / SQL vs. NoSQL

@@ -12,7 +12,7 @@ Esta clase es la puerta de entrada a esa idea, y a algo igual de importante: ant
 
 ### ¿Qué es una base de datos relacional?
 
-Una base de datos relacional organiza la información en **tablas**. Cada tabla representa un tipo de entidad (por ejemplo, `autores` o `libros`), y cada fila de esa tabla es una instancia concreta de esa entidad (un autor específico, un libro específico). Las columnas definen qué atributos tiene cada entidad, y cada columna tiene un tipo de dato asociado (texto, número, fecha, etc.).
+Una base de datos relacional organiza la información en **tablas**. Cada tabla representa un tipo de entidad (por ejemplo, `authors` o `books`), y cada fila de esa tabla es una instancia concreta de esa entidad (un autor específico, un libro específico). Las columnas definen qué atributos tiene cada entidad, y cada columna tiene un tipo de dato asociado (texto, número, fecha, etc.).
 
 Lo que hace "relacional" a este modelo es que las tablas se conectan entre sí mediante **relaciones**: un libro pertenece a un autor, un pedido tiene varios productos, etc. Esas conexiones se expresan con claves.
 
@@ -22,7 +22,7 @@ Cada fila de una tabla necesita un identificador único e inequívoco — la cla
 
 ### Clave foránea (Foreign Key) y relaciones
 
-Una clave foránea es una columna que referencia la clave primaria de otra tabla. Por ejemplo, la tabla `libros` puede tener una columna `autor_id` que apunta al `id` de un autor en la tabla `autores`. Esa es la base de una relación **1 a N**: un autor puede tener muchos libros, pero cada libro tiene un único autor.
+Una clave foránea es una columna que referencia la clave primaria de otra tabla. Por ejemplo, la tabla `books` puede tener una columna `author_id` que apunta al `id` de un autor en la tabla `authors`. Esa es la base de una relación **1 a N**: un autor puede tener muchos libros, pero cada libro tiene un único autor.
 
 Más adelante en el bootcamp vas a ver también relaciones **N a N** (por ejemplo, un libro puede tener varios géneros, y un género puede aplicar a varios libros), que se modelan con una tabla intermedia.
 

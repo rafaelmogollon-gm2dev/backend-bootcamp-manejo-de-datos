@@ -9,7 +9,7 @@
 - No importa si terminaste el frontend o no — solo necesitás tener claro qué entidades maneja tu dominio.
 
 ### 2. Explorar el ejemplo guiado (opcional, antes de arrancar)
-- Cargá la mini base de datos "Biblioteca" (autores → libros → préstamos) — el SQL para crearla está en el MATERIAL de esta clase, sección 4 — y explorala con TablePlus/pgAdmin.
+- Cargá la mini base de datos de biblioteca (authors → books → loans) — el SQL para crearla está en el MATERIAL de esta clase, sección 6 — y explorala con pgAdmin.
 - Identificá dónde está la clave primaria y dónde la clave foránea antes de diseñar la tuya.
 
 ### 3. Modelar en draw.io

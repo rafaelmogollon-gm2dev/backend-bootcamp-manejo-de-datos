@@ -9,7 +9,7 @@
 
 ## Bloque 1 (~35 min) — Repaso + tipos de datos + sentencias básicas
 
-- Repaso rápido del modelo de "Biblioteca" (autores → libros → préstamos).
+- Repaso rápido del modelo de biblioteca (authors → books → loans).
 - Tipos de datos en Postgres: `VARCHAR` vs `TEXT`, `INTEGER` vs `SERIAL`, `BOOLEAN`, `DATE`/`TIMESTAMP` — necesario antes de que escriban su propio `CREATE TABLE` en el ejercicio de hoy.
 - CREATE TABLE: cómo se traduce un diagrama ER a SQL real, escribiendo cada línea a mano (comparar contra `seed.sql` como referencia de sintaxis, ya que draw.io no genera un export).
 - INSERT, SELECT, UPDATE, DELETE — sintaxis básica, con ejemplos en vivo sobre "Biblioteca" (que ya tienen cargada, así que arrancan viendo resultados reales al toque).

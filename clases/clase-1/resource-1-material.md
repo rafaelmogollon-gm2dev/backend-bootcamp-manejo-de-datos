@@ -76,7 +76,9 @@ pgAdmin permite ver tablas, datos y relaciones sin escribir SQL a mano todo el t
 
 ## 2. Qué es una base de datos relacional
 
-Una base de datos relacional organiza la información en **tablas**. Cada tabla representa un tipo de entidad (por ejemplo, **autores** o **libros**), y cada fila de esa tabla es una instancia concreta de esa entidad (un autor específico, un libro específico). Las columnas definen qué atributos tiene cada entidad, y cada columna tiene un tipo de dato asociado (texto, número, fecha, etc.).
+Una base de datos relacional organiza la información en **tablas**. Cada tabla representa un tipo de entidad (por ejemplo, **authors** o **books**), y cada fila de esa tabla es una instancia concreta de esa entidad (un autor específico, un libro específico). Las columnas definen qué atributos tiene cada entidad, y cada columna tiene un tipo de dato asociado (texto, número, fecha, etc.).
+
+Los nombres de tablas y columnas los vamos a escribir en inglés — es la convención más habitual en la industria, incluso en equipos que hablan español.
 
 Lo que hace "relacional" a este modelo es que las tablas se conectan entre sí mediante **relaciones**: un libro pertenece a un autor, un pedido tiene varios productos, etc. Esas conexiones se expresan con claves.
 
@@ -86,7 +88,7 @@ Cada fila de una tabla necesita un identificador único e inequívoco — la cla
 
 ### Clave foránea (Foreign Key) y relaciones
 
-Una clave foránea es una columna que referencia la clave primaria de otra tabla. Por ejemplo, la tabla **libros** puede tener una columna **autor_id** que apunta al **id** de un autor en la tabla **autores**. Esa es la base de una relación **1 a N**: un autor puede tener muchos libros, pero cada libro tiene un único autor.
+Una clave foránea es una columna que referencia la clave primaria de otra tabla. Por ejemplo, la tabla **books** puede tener una columna **author_id** que apunta al **id** de un autor en la tabla **authors**. Esa es la base de una relación **1 a N**: un autor puede tener muchos libros, pero cada libro tiene un único autor.
 
 Más adelante en el bootcamp vas a ver también relaciones **N a N** (por ejemplo, un libro puede tener varios géneros, y un género puede aplicar a varios libros), que se modelan con una tabla intermedia.
 
@@ -146,7 +148,7 @@ Vas a ver estos mismos elementos — **NOT NULL** y **DEFAULT** — en el script
 
 ## 6. Explorar una base de datos ya armada
 
-Para practicar todo lo anterior con datos reales (sin escribir SQL todavía), vamos a usar una mini base de datos ya armada llamada "Biblioteca", con tres tablas: **autores**, **libros** y **prestamos**.
+Para practicar todo lo anterior con datos reales (sin escribir SQL todavía), vamos a usar una mini base de datos ya armada, con el dominio de una biblioteca, con tres tablas: **authors**, **books** y **loans**.
 
 ### Paso 1: crear la base de datos
 
@@ -156,39 +158,39 @@ Postgres.app ya crea una base de datos llamada **postgres** por defecto — vamo
 
 Abrí cualquier editor de texto y creá un archivo llamado **seed.sql**, con este contenido:
 
-DROP TABLE IF EXISTS prestamos;
-DROP TABLE IF EXISTS libros;
-DROP TABLE IF EXISTS autores;
+DROP TABLE IF EXISTS loans;
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS authors;
 
-CREATE TABLE autores (
+CREATE TABLE authors (
   id SERIAL PRIMARY KEY,
-  nombre VARCHAR(100) NOT NULL,
-  nacionalidad VARCHAR(50)
+  name VARCHAR(100) NOT NULL,
+  nationality VARCHAR(50)
 );
 
-CREATE TABLE libros (
+CREATE TABLE books (
   id SERIAL PRIMARY KEY,
-  titulo VARCHAR(150) NOT NULL,
-  autor_id INTEGER REFERENCES autores(id),
-  anio INTEGER,
-  disponible BOOLEAN DEFAULT true
+  title VARCHAR(150) NOT NULL,
+  author_id INTEGER REFERENCES authors(id),
+  year INTEGER,
+  available BOOLEAN DEFAULT true
 );
 
-CREATE TABLE prestamos (
+CREATE TABLE loans (
   id SERIAL PRIMARY KEY,
-  libro_id INTEGER REFERENCES libros(id),
-  nombre_lector VARCHAR(100) NOT NULL,
-  fecha_prestamo DATE DEFAULT CURRENT_DATE,
-  fecha_devolucion DATE
+  book_id INTEGER REFERENCES books(id),
+  reader_name VARCHAR(100) NOT NULL,
+  loan_date DATE DEFAULT CURRENT_DATE,
+  return_date DATE
 );
 
-INSERT INTO autores (nombre, nacionalidad) VALUES
-  ('Gabriel García Márquez', 'Colombiana'),
-  ('Jorge Luis Borges', 'Argentina'),
-  ('Isabel Allende', 'Chilena'),
-  ('J.K. Rowling', 'Británica');
+INSERT INTO authors (name, nationality) VALUES
+  ('Gabriel García Márquez', 'Colombian'),
+  ('Jorge Luis Borges', 'Argentine'),
+  ('Isabel Allende', 'Chilean'),
+  ('J.K. Rowling', 'British');
 
-INSERT INTO libros (titulo, autor_id, anio, disponible) VALUES
+INSERT INTO books (title, author_id, year, available) VALUES
   ('Cien años de soledad', 1, 1967, true),
   ('El amor en los tiempos del cólera', 1, 1985, true),
   ('Ficciones', 2, 1944, false),
@@ -196,7 +198,7 @@ INSERT INTO libros (titulo, autor_id, anio, disponible) VALUES
   ('La casa de los espíritus', 3, 1982, true),
   ('Harry Potter y la piedra filosofal', 4, 1997, false);
 
-INSERT INTO prestamos (libro_id, nombre_lector, fecha_prestamo, fecha_devolucion) VALUES
+INSERT INTO loans (book_id, reader_name, loan_date, return_date) VALUES
   (3, 'Mati', '2026-08-15', NULL),
   (6, 'Joaquín', '2026-08-20', NULL);
 
@@ -212,10 +214,10 @@ Esto crea las 3 tablas dentro de la base de datos **postgres**, y las llena con 
 
 ### Paso 4: explorar los datos con pgAdmin
 
-Abrí pgAdmin (ya conectado a **postgres**, ver sección 1.2) y navegá a las tablas **autores**, **libros** y **prestamos**. Vas a poder ver:
+Abrí pgAdmin (ya conectado a **postgres**, ver sección 1.2) y navegá a las tablas **authors**, **books** y **loans**. Vas a poder ver:
 
 - La clave primaria (columna **id**) de cada tabla.
-- La clave foránea (columna **autor_id** en **libros**, columna **libro_id** en **prestamos**) conectando una tabla con otra.
+- La clave foránea (columna **author_id** en **books**, columna **book_id** en **loans**) conectando una tabla con otra.
 - Los datos reales cargados por el script.
 
 Explorá por tu cuenta 5-10 minutos: cambiá algún valor, agregá una fila nueva desde la interfaz visual (sin escribir SQL), y prestá atención a qué pasa.
@@ -226,17 +228,17 @@ Explorá por tu cuenta 5-10 minutos: cambiá algún valor, agregá una fila nuev
 
 Antes de crear las tablas de un sistema nuevo, conviene diagramar el modelo de datos: qué entidades existen, qué atributos tiene cada una, y cómo se relacionan entre sí. A esto se lo llama **modelado Entidad-Relación (ER)**.
 
-Por ejemplo, el modelo de "Biblioteca" que acabás de explorar se diagrama así:
+Por ejemplo, el modelo de biblioteca que acabás de explorar se diagrama así:
 
-TABLA: autores                    TABLA: libros
+TABLE: authors                    TABLE: books
 -----------------                 -----------------------
-id (PK)          <----------      autor_id (FK)
-nombre                             id (PK)
-nacionalidad                       titulo
-                                   anio
-                                   disponible
+id (PK)          <----------      author_id (FK)
+name                               id (PK)
+nationality                        title
+                                   year
+                                   available
 
-La flecha indica que **autor_id** en la tabla **libros** es una clave foránea que apunta al **id** (clave primaria) de la tabla **autores**. Cada tabla es una entidad, cada flecha marca una relación.
+La flecha indica que **author_id** en la tabla **books** es una clave foránea que apunta al **id** (clave primaria) de la tabla **authors**. Cada tabla es una entidad, cada flecha marca una relación.
 
 En la próxima clase vas a hacer este mismo ejercicio con tu propio dominio, usando una herramienta de diagramado (los detalles están en la Guía de Ejercicios de esta clase).
 
@@ -246,12 +248,12 @@ En la próxima clase vas a hacer este mismo ejercicio con tu propio dominio, usa
 
 Si vas a modelar un sistema con autores y libros, una opción ingenua sería tener una sola tabla con el título del libro y el nombre completo del autor repetido en cada fila. El problema: si ese autor cambia de nombre, o hay un error de tipeo, hay que corregirlo en decenas de filas.
 
-La normalización es el proceso de organizar los datos en tablas separadas para que cada dato viva en un único lugar, y las relaciones entre esas tablas se expresen mediante claves. Existen niveles formales de normalización (1FN, 2FN, 3FN) — el modelo de "Biblioteca" que viste ya está normalizado: los datos del autor viven solo en la tabla **autores**, no repetidos en cada libro.
+La normalización es el proceso de organizar los datos en tablas separadas para que cada dato viva en un único lugar, y las relaciones entre esas tablas se expresen mediante claves. Existen niveles formales de normalización (1FN, 2FN, 3FN) — el modelo de biblioteca que viste ya está normalizado: los datos del autor viven solo en la tabla **authors**, no repetidos en cada libro.
 
 Documentación de referencia:
 - Documentación oficial de PostgreSQL: www.postgresql.org/docs
 - postgresqltutorial.com
-- Database Design Course (freeCodeCamp) — modelado, normalización y ER: www.youtube.com/watch?v=ztHopE5Wnpc
+- Normalización en SQL (DataCamp) — modelado, normalización y ER: www.datacamp.com/es/tutorial/normalization-in-sql
 
 ---
 
