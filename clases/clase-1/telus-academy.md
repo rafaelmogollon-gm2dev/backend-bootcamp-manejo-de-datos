@@ -79,6 +79,8 @@ Si ves un prompt como "postgres=#", estás adentro (para salir, escribí el coma
 
 **Datos de conexión por defecto:** host **localhost**, puerto **5432**, usuario tu usuario de Mac (ejecutá el comando **whoami** en la Terminal si no lo recordás), contraseña vacía, base de datos **postgres**.
 
+**Aclaración importante:** al hacer "Initialize", Postgres.app crea automáticamente dos bases de datos distintas — una con el mismo nombre que tu usuario de Mac (por ejemplo, si tu usuario es "rafael", existe una base llamada "rafael"), y otra llamada literalmente **postgres**, que es una base de mantenimiento estándar en cualquier instalación de PostgreSQL. En todo este material vamos a usar específicamente la base **postgres** (no la que lleva tu nombre de usuario), porque así el material funciona igual para cualquier alumno, sin importar cómo se llame su Mac.
+
 **Errores comunes:**
 - *"psql: command not found"*: el PATH no se actualizó. Cerrá todas las Terminales y abrí una nueva.
 - *Puerto 5432 ocupado*: puede haber otro Postgres corriendo. Podés ver qué proceso es ejecutando en la Terminal el comando **lsof -i :5432**. Si no es Postgres.app, cerralo con el comando **kill** seguido del número de proceso que te mostró.
@@ -178,7 +180,7 @@ Para practicar todo lo anterior con datos reales (sin escribir SQL todavía), va
 
 ### Paso 1: crear la base de datos
 
-Postgres.app ya crea una base de datos llamada **postgres** por defecto — vamos a usar esa misma, no hace falta crear una nueva. Si en algún momento quisieras crear una base de datos separada para otro proyecto, el comando en la Terminal sería **createdb nombre_de_tu_base** (no lo necesitás para este ejercicio, pero es bueno saber que existe).
+Postgres.app ya crea automáticamente una base de datos llamada **postgres** por defecto (además de otra con el nombre de tu usuario de Mac, que no vamos a usar) — vamos a trabajar sobre esa base **postgres**, no hace falta crear una nueva. Si en algún momento quisieras crear una base de datos separada para otro proyecto, el comando en la Terminal sería **createdb nombre_de_tu_base** (no lo necesitás para este ejercicio, pero es bueno saber que existe).
 
 ### Paso 2: crear el archivo con el script SQL
 
